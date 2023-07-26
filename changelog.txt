@@ -1,0 +1,402 @@
+KNOWN BUGS:
+-Font is often unreadable if it's centred due to weird antialiasing (deemed unsolvable, likely an browser-handled thing instead of a CSS thing)
+-Font is also hard to read if the font size isn't a multiple of 12
+-You can't save or export if you have an unusual character in your dragon's name
+-Sigil automation tab apparently doesn't initially show until refresh for some people
+-Plutonium tab disappears for some people
+-Sometimes knowledge achievements aren't unlocked until the page is refreshed
+-Knowledge reward range is sometimes slightly off for small amounts
+
+TO DO:
+-More hotkeys
+-Change sigil upgrade max alls so that they use all of the resources
+-Finally rearrange the stuff in the resource tab (or make it easier to do so)
+
+v1.0.0 (09/07/23)
+-The end of the game.
+-Added finality cubes!
+-Added a new dragon stage
+-Changed the nuclear pasta info window to disappear immediately when mouse is moved
+-Fixed finality essence upgrade 3 cost starting at 1.00e16 when it should start at 1.00e15
+-Fixed knowledge upgrade 2 effect flickering when bought manually
+-Fixed screen jolting around when tab key is pressed (tab indexing)
+-Other minor bug fixes and changes
+
+v0.12.2 (07/07/23)
+-Added a new dragon stage
+-Added some new finality essence upgrades and a new death essence upgrade
+-Fixed knowledge sometimes getting stuck on 0
+-Actually fixed formatting for time spent with dragon (as well as other cooldowns)
+
+v0.12.1 (06/07/23)
+-Added finality essence!
+-Added a new nuclear pasta upgrade
+-Fixed blue fire and holy fire upgrades flickering to 0 when being bought manually
+-Fixed visual issue with one of the hypergod achievements
+-Fixed death essence max all not spending the right amount
+-Fixed console always displaying a source map error
+-Somehow nobody caught that magic upgrade 5 didn't do what it said it did for like 8 months
+-Other minor bug fixes and changes
+-Removed Herobrine
+
+v0.12.0 (05/07/23)
+-Added nuclear pasta!
+-Added max all and auto max all for cosmic plague upgrades (unlocks through achievements)
+-Added max all for essence upgrades (unlocks through achievements)
+-Fixed formatting for time spent with dragon
+-Fixed errors with importing saves
+-Other minor bug fixes and changes
+
+v0.11.1 (02/07/23)
+-Added death essence!
+-Added a new dragon stage
+-Fixed planet achievement 5 saying planet achievement 6's reward
+-Fixed dark essence effect displaying incorrectly
+-Fixed being able to input knowledge trade levels outside of the intended range
+-Other minor bug fixes and changes
+
+v0.11.0 (30/06/23)
+-Added light and dark essences!
+-Added a new oganesson upgrade
+-Added Patreon link in info tab
+-Improved the load function to allow for adding onto saved arrays when loading
+
+v0.10.1 (28/06/23)
+-Added oganesson!
+-Added a new dragon stage
+-Added a new cosmic plague upgrade
+-Added buy max buttons for plague upgrades (unlocks through achievements)
+-Dragon image can no longer be dragged
+-Bought void magic upgrades are now less garish
+-Fixed void magic unlock not checking for holy fire
+-Other minor bug fixes and changes
+
+v0.10.0 (26/06/23)
+-Added the OMNIVERSAL HYPERGODS
+-Added cosmic plague and spores
+-Added buy max for planet forming (unlocks through achievements)
+-Variables now update twice per second instead of once
+-Fixed "next at" for dodecahedrons not disappearing when it should
+-Other minor bug fixes and changes
+
+v0.9.2 (22/06/23)
+-Added superclusters!
+-Added some more void magic upgrades
+-Removed some old extraneous code
+-Other minor bug fixes and changes
+
+v0.9.1 (22/06/23)
+-Added planets!
+-Added some more void magic upgrades
+-Added a new holy fire upgrade
+
+v0.9.0 (21/06/23)
+-Added holy dodecahedrons!
+-Added void magic upgrades!
+-Added some more holy octahedron upgrades
+-Added a new dragon stage
+-Removed Heresy as a hell layer option (it won't be added to the gameplay)
+-Fixed holy fire upgrades saying "blue fire"
+-Fixed blue fire upgrades being bought before blue fire is gained each tick
+-Fixed sigil powers sometimes flickering to 0
+-Hopefully fixed too many octahedron upgrades being purchasable when the tab first appears
+-Other minor bug fixes and changes
+
+v0.8.1 (12/02/23)
+-Added holy octahedrons!
+-Added holy fire!
+-Added buy max button for tome upgrades (unlocks through achievements)
+-Added auto max all for sigil upgrades (unlocks through achievements)
+-Added a new hell layer!
+-Removed achievement stars (they're extremely buggy)
+-Clicking on a resource in the resource tab now takes you to that resource
+-Fixed holy tetrahedron amount not updating in the resources tab
+-Fixed some visual bugs in the holy tetrahedron tab
+-Fixed knowledge trades not resetting on holy polyhedron reset
+-Fixed sigil power sometimes going below 0
+-Added a secret dragon Easter egg
+-Other minor bug fixes and changes
+
+v0.8.0 (01/02/23)
+-Added holy tetrahedrons!
+-Added achievement stars! Fully completed achievement rows now have some extra goals to reach
+-Added hotkeys for activating/deactivating magic challenges and converting tomes
+-Free uranium/plutonium gain is now based on highest ever to get, with platinum now also receiving it
+-Some dark magic upgrade costs are cheaper
+-Top left tabs can now be closed
+-"Pet your dragon" button will now change to indicate when you cannot pet your dragon any more
+-Some challenge-related QoL is attainable earlier
+-Fixed blood gain exploding due to Greed not affecting gold/click
+-Fixed orange sigil upgrade 4 not becoming inactive on reload if bought
+-Fixed buying miners sometimes not working
+-Fixed being able to use certain hotkeys before you unlock them
+-Fixed platinum upgrade 7 becoming 20/10 in certain cases
+-Other minor bug fixes and changes
+-The game now also has some reworked sprites thanks to the talented Zaxolotl!
+
+v0.7.4 (15/12/22)
+-Added yellow sigils!
+-Added max all and auto max all for blue fire upgrades (unlocks through achievements)
+-Added auto max all for knowledge upgrades (unlocks through achievements)
+-Added automatic plutonium gain (unlocks through achievements)
+-Fixed trade level input having "next" option on mobile that broke the UI
+-Fixed sigil resetter changing to cyan sigils when upon refresh when set to red or orange sigils
+-Hopefully fixed the achievements tab going off screen on smaller devices
+-Fifth plutonium upgrade now properly remembers how many times it has been bought
+-Dark magic upgrade 17 is now more expensive
+-"Settings and info" tab now just says "Settings"
+-Fixed changelog link not working
+-Changelog and Discord links now open in new tab
+
+v0.7.3 (08/12/22)
+-Added orange sigils!
+-Added max upgrade buttons for red and orange sigils
+-Added hotkeys (finally)
+-Fixed the loading screen not disappearing for first time players (how this went unnoticed by me for so long is a mystery)
+-The info in the settings tab has now split into its own tab
+-Changed export/import to use a text field so that exporting and importing can be done on mobile
+-Added some alerts for being in magic challenges, being in hell and when the sigil resetter is on
+-Unlocking a tab now pans over to that tab
+-The auto sigil resetter now has more options
+-Hopefully fixed saves for all the people who bought plutonium before unlocking more dark magic upgrades
+-Fixed the red sigil upgrade 2 cost for the people who still have the issue
+-Fixed the knowledge trade level slider being on the far left when opening the page
+-Fixed being in hell sometimes causing NaNs
+-Hopefully fixed most other NaNs
+-Auto dragon feeding now feeds the maximum amount instead of 1 by 1
+-Spending time with the dragon now accounts for time spent out of the tab
+-"Nerfs for this layer" now says the correct layer name
+-Other minor bug fixes and changes
+-Added Jake
+
+v0.7.2 (04/12/22)
+-Okay NOW the tome upgrades are fixed I promise
+-Red sigil upgrade 1 now says RSP instead of PSP (as it should)
+-Fixed red sigil upgrade 2 being initially unbuyable (if you haven't bought it you may have to buy it once, it'll cost 2500 RSP)
+-Added text to clarify planet form caps
+
+v0.7.1 (03/12/22)
+-Hell nerf now affects gold/click to stop people gaining tremendous amounts of blood immediately
+-Plutonium tome upgrade now requires having dark magic upgrade 11 to prevent people buying it before unlocking more dark magic upgrades
+-Red sigil tome upgrade now requires having plutonium unlocked to prevent people buying it before plutonium
+-Did a few fixes for knowledge trade resetting
+
+v0.7.0 (03/12/22)
+-Added BLOOD
+-Added a new alchemy layer: Plutonium!
+-Added red sigils!
+-Added some more tome and dark magic upgrades
+-Added buy max buttons for blue fire upgrades (unlocks through achievements)
+-Added text input for knowledge trade level
+-Added automatic knowledge gain (unlocks through achievements)
+-Knowledge trade cost ranges now includes knowledge reward range
+-Knowledge trade level is now capped at 9,999
+-Knowledge upgrade 2 no longer scales as fast
+-Reward-giving achievements are now a bit easier to tell apart
+-Blue fire upgrades now disable when you cannot afford them
+-Hopefully fixed some things that might cause NaNs
+-Fixed achievements tab looking ugly when the scroll bar appears
+-Made a few speed optimizations
+-Other minor bug fixes and changes
+
+v0.6.3 (22/11/22)
+-Added a new dragon stage
+-Added some more tome and blue fire upgrades
+-Added a counter to show your dragon's stage
+-Added buy max button for knowledge upgrades (unlocks through achievements)
+-Hopefully fixed miner buy max causing NaNs
+-Indigo upgrade 3's effect now caps at ^30.0
+-Fixed violet sigil upgrade 1's price being set to indigo sigil upgrade 1's price
+-Fixed a few text mistakes
+
+v0.6.2 (07/11/22)
+-Added blue fire!
+-Added a few more tome upgrades
+-Tomes now have a buy max button
+-Magic hardcap text now disappears when magic goes below e5,000,000
+-Discord link now has its own section in the settings
+-Other minor bug fixes and changes
+
+v0.6.1 (30/10/22)
+-Added tomes!
+-Removed the knowledge trade reroll button
+-Knowledge trades are now more expensive (sorry)
+-Knowledge stuff has been generally nerfed a bit
+-Fixed knowledge trade cost ranges not displaying correctly
+-Magic effect hardcap is now a magic hardcap to prevent magic amounts going crazy
+-Fire max all and auto max all buttons have been moved to the top of the tab
+-Loading the game should be a bit faster
+-Added a loading screen for when the game takes a while to load
+-Fixed knowledge upgrade text not updating in some cases
+-Fixed issue where max all sigil upgrades button appeared too early
+-Fixed pink sigil resets not asking to confirm if you have 0 to gain
+-Removed Herobrine
+
+v0.6.0 (29/10/22)
+-Added knowledge and knowledge trades!
+-Fixed indigo achievement 1 not properly working sometimes
+-Fixed final 2 dark magic upgrades being purchasable earlier than intended
+-Fixed export option on mobile
+-Dragon tab height now changes dynamically based on content instead of being hard set based on progress
+-Unfortunately had to remove the 4D baseball minigame, it was laggy and kept causing errors :(
+
+v0.5.1 (25/10/22)
+-Fixed issue where certain early game players would have platinum upgrade 7 at 20/10 instead of 10/10
+-Swapped the rewards for cyan sigil achievements 1 and 2, meaning automatic spending time comes earlier
+-"Gain more platinum and uranium upgrades" cost has been reduced from e450 to e420
+-Achievement info no longer scrolls with the achievement icons, keeping it readable if you scroll down
+
+v0.5.0 (23/10/22)
+-Added achievements, which can give you QoL bonuses
+-The QoL bonuses now work differently! Most now come from the new achievements instead of upgrades. They have also been generally moved earlier in order to make the game a bit less grindy
+-Reworked several magic upgrades to rebalance for achievements
+-Removed QoL related sigil upgrades and uranium upgrades as they have now been replaced with achievements
+-You can now name your dragon! It doesn't have any practical effect, but it's cool
+-Some sigil requirements and upgrade prices have been changed
+-"Next magic at" text now persists for longer
+-Other minor bug fixes and changes
+
+v0.4.4 (10/10/22)
+-Added pink sigils!
+-All traces of "purple" sigils have been wiped from existence. We are not to speak of them any further.
+-Fire max all now divides gold up equally between the upgrades instead of maxing each upgrade in a row
+-Fixed performance issue in which render would occur too often when clicking and dragging
+-Reduced "Unlock more magic upgrades" requirement from 275k magifolds to 150k
+-Number formatting now has 2 digits of precision for the mantissa instead of 3
+-Fixed some issues with loading earlier saves
+-Dragging controls are now implemented for mobile
+-Other minor bug fixes and changes
+
+v0.4.3 (05/10/22)
+-Added violet sigils!
+-You can now pet the dragon (unlockable with violet sigils)
+-Nerfed some of the indigo sigil upgrades
+-The game now works on mobile!
+-Added movement using the arrow keys
+-Added option to disable the background pattern
+-Some icons have been changed
+-Fixed endgame inflation issue (magic effect is now softcapped again past e100,000)
+-Fixed issue with clicking and dragging getting stuck if you drag your cursor out of the window
+-Fixed issue with right clicks causing undesired panning
+-Fixed fire upgrades resetting to the wrong price on magic reset
+-Fixed more weird rounding issues
+-Platinum upgrade 7 is now actually kept on magic reset like it says
+-Fire upgrade 3 has been buffed slightly
+-Began splitting script.js into multiple files for ease of reading going forward
+-Other minor bug fixes and changes
+
+v0.4.2 (30/09/22)
+-Added indigo sigils!
+-There's finally an upgrade to gain score automatically! YIPPEE
+-Blue sigil effect is slightly stronger
+-Fixed weird rounding issues for large powers of 10
+-Changed number formatting for numbers over 1e10,000
+-Changed magic and sigil resets so that you will always be asked to confirm if you will gain nothing from resetting
+-Hopefully finally fixed the issue with dragging getting stuck on if your mouse is over a disabled button
+-Other minor bug fixes and changes
+
+v0.4.1 (27/09/22)
+-Added blue sigils!
+-Added a time played stat (in the settings and info tab)
+-Fixed exploit that allowed players to gain lots of free gold at the start of challenges
+-Fire effect text in dragon tab now displays correctly if you have dark magic upgrade 6
+-Other minor bug fixes and changes
+
+v0.4.0 (25/09/22)
+-Added a new prestige layer: sigils!
+-Dragon time spent effect now says "capped" when you hit the cap (^2.5)
+-Magic effect is now softcapped past 1e1,000
+-Rearranged a few tabs (settings tab is now in the top left corner with the resources tab)
+-Screen now pops up for mobile users telling them they are unable to play on mobile (I haven't yet been able to get mobile to work)
+-Even more buttons are no longer fuzzy
+-Other minor bug fixes and changes
+
+v0.3.2 (18/09/22)
+-Added dark magic upgrades!
+-Fixed fire buy max buttons not appearing when upgrade is bought
+-Made the magic upgrade code a LOT shorter and faster
+
+v0.3.1 (17/09/22)
+-Added some new platinum and uranium upgrades!
+-Added buy max buttons for fire upgrades
+-Replaced the home icon with a better image
+-More buttons are no longer fuzzy (yay!)
+-Other minor bug fixes and changes
+
+v0.3.0 (16/09/22)
+-Added a new alchemy element: uranium!
+-Added a new dragon stage with some fancy new features (Surprise! Your dragon has feelings)
+-Made all the buttons left-aligned to get rid of that annoying unfixable subpixel rendering antialiasing crap
+-Magic tab now shows the amount of gold needed for the next magic (as long as you don't have any magic-increasing upgrades)
+-Fixed bug with max all for fire upgrades
+-Fixed bug with fire upgrades 4 and 5
+-Other minor bug fixes and changes
+
+v0.2.3 (11/09/22)
+-Added 2 new magic upgrades
+-Added confirmation popup toggle for magic resets
+-Importing earlier saves now makes later stuff disappear
+-Fixed fire resource text not updating until fire upgrades are unlocked
+-Some small balances to make early game easier
+
+v0.2.2 (10/09/22)
+-Various bug fixes
+
+v0.2.1 (08/09/22)
+-Fixed a bug where the game is completely broken and unplayable lol
+
+v0.2.0 (08/09/22)
+-Added magic challenges
+-Added manifolds, which boost gold gain
+-Added some new magic upgrades
+
+v0.1.2 (06/09/22)
+-Fixed bug where importing a save wouldn't hide max all buttons
+-Added discord and changelog links
+
+v0.1.1 (04/09/22)
+-Added 4 new magic upgrades and a new platinum upgrade
+-Main tab now display gold/click
+-Fixed fire upgrade 2 not affecting production
+-Fixed fire upgrade 3 being slightly incorrect
+-Platinum upgrade 6 has been made slightly less powerful
+-Added some new info text
+
+v0.1.0 (04/09/22)
+-Added magic (lose all resources and upgrades for a big bonus!)
+-Added magic upgrades
+-Added new dragon stage (dark dragon)
+-Updated fire texture to better fit with the rest of the icons
+
+v0.0.7 (30/08/22)
+-Finished the rest of the platinum upgrades
+-Added new dragon stage (elder dragon)
+-Minor bug fixes
+
+v0.0.6 (29/08/22)
+-Added platinum and platinum upgrades (only upgrades 1 and 2 work)
+
+v0.0.5 (28/08/22)
+-Added saving and loading, as well as export/import
+-Slight performance improvements
+-More magic upgrades require 275,000 magifolds and cost 100,000,000 magic
+
+v0.0.4 (27/08/22)
+-Fire upgrades now do something
+-Moved resources tab to top corner (fixed in place)
+-Dragon can now become an adult
+
+v0.0.3 (27/08/22)
+-Fire now multiplies miner production
+-Added fire upgrades (currently don't work)
+-Numbers ported over to break_eternity
+-Fixed home icon not working
+
+v0.0.2 (26/08/22)
+-Theme changed to dragons
+-Added a dragon
+-Added fire (does nothing for now)
+
+v0.0.1 (25/08/22)
+-Created game (Sushi Beans 2)
+-Click and drag feature with two basic boxes

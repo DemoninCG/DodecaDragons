@@ -1,0 +1,711 @@
+@font-face{
+    font-family:"Pixelated MS Sans Serif";
+    font-style:normal;
+    font-weight:400;
+    src:url(fonts/ms_sans_serif.woff) format("woff");
+    src:url(fonts/ms_sans_serif.woff2) format("woff2")
+}
+@font-face{
+    font-family:"Pixelated MS Sans Serif";
+    font-style:normal;
+    font-weight:700;
+    src:url(fonts/ms_sans_serif_bold.woff) format("woff");
+    src:url(fonts/ms_sans_serif_bold.woff2) format("woff2")
+}
+@font-face{
+    font-family:"Alagard";
+    font-style:normal;
+    font-weight:700;
+    src:url(fonts/alagard.woff) format("woff");
+}
+@font-face{
+    font-family:"VCR OSD MONO";
+    font-style:normal;
+    font-weight:700;
+    src:url(fonts/VCR_OSD_MONO.woff) format("woff");
+}
+
+*:disabled {
+  pointer-events: none;
+}
+
+html, body {
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #222;
+  background-image: url('img/back.png');
+  overflow: hidden;
+  user-select: none;
+  cursor: all-scroll;
+  font-smooth: never;
+  -webkit-font-smoothing: none;
+  transition: filter 1.5s;
+}
+
+.box {
+  position: absolute;
+  top: 100px;
+  left: 100px;
+  transform: translate(-50%, -50%);
+}
+
+p {
+  margin-left: 4px;
+  font-family: "Pixelated MS Sans Serif", Arial;
+}
+
+.titleText {
+  font-family: 'Alagard';
+  font-size: 24px;
+  margin-top: 6px;
+  margin-bottom: 0;
+}
+
+.status-bar {
+  gap: 1px;
+  display: flex;
+  margin: 0 1px;
+  position: absolute;
+  bottom: 4px;
+  width: 298px;
+}
+
+.status-bar-field {
+  box-shadow: inset -1px -1px #dfdfdf,inset 1px 1px grey;
+  flex-grow: 1;
+  margin: 0;
+  padding: 2px 3px;
+  color: #444;
+}
+
+button {
+  margin-left: 4px;
+  margin-bottom: 4px;
+  cursor: pointer;
+}
+
+img {
+  image-rendering: pixelated;
+  pointer-events: none;
+}
+
+#loadingScreenCover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #111;
+  z-index: 2;
+}
+
+#loadingScreenLogo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 40vw;
+  transform: translate(-50%, -50%);
+}
+
+.clickButton {
+  color: white;
+  position: absolute;
+  width: 64px;
+  cursor: pointer;
+  pointer-events: auto;
+  image-rendering: pixelated;
+  bottom: 5px;
+}
+
+#home {
+  right: 8px;
+}
+#arrowRight {
+  right: 80px;
+}
+#arrowLeft {
+  right: 152px;
+}
+#arrowDown {
+  right: 224px;
+}
+#arrowUp {
+  right: 296px;
+}
+#navArrows {
+  display:none;
+  opacity: 0.7;
+}
+
+.confirmationToggle {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #0f0;
+  cursor: pointer;
+  image-rendering: pixelated;
+  display: inline-block;
+}
+
+.resourceRow {
+  margin-top: 4px;
+  margin-bottom: 0;
+  cursor: pointer;
+}
+
+.resourceIcon {
+  padding-right: 5px;
+}
+
+.fireUpgrade, .blueFireUpgrade, .holyFireUpgrade {
+  text-align: left;
+}
+
+.fireBuyMaxButton {
+  min-width: 46px;
+  display: none;
+}
+
+#fireMaxAllButton {
+  position: absolute;
+  top: 89px;
+  right: 8px;
+  display: none;
+}
+
+#fireAutoMaxAllButton {
+  position: absolute;
+  top: 119px;
+  right: 8px;
+  display: none;
+}
+
+#platinumConvertButton {
+  width: 242px;
+  margin-top: 5px;
+  background-color: #bcc;
+  text-align: center;
+  height: 32px;
+}
+
+.platinumUpgrade {
+  height: 34px;
+  background-color: #bcc;
+  text-align: left;
+}
+
+#platinumMaxAllButton {
+  position: absolute;
+  bottom: 4px;
+  right: 8px;
+  display: none;
+}
+
+.magicUpgrade {
+  height: 46px;
+  margin: 5px 2px 0 2px;
+  background-color: #95a;
+  text-align: left;
+}
+
+.magicUpgrade:disabled {
+  color: #444;
+  text-shadow: 1px 1px 0 #777;
+}
+
+#uraniumMagicUpgrade {
+  display: none;
+  background-image: url('img/uraniumButtonBack.png');
+  background-size: 150px;
+  image-rendering: pixelated;
+  text-shadow: 1px 1px 0 #bbb;
+}
+
+#uraniumMagicUpgrade:disabled {
+  color: #666;
+  text-shadow: 1px 1px 0 #999;
+}
+
+#magicChallengesContainer {
+  margin: 4px;
+  margin-bottom: 10px;
+  width: 200px;
+  height: 200px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  justify-self: stretch
+}
+
+.magicChallenge {
+  margin: 2px;
+  border: 3px solid #308;
+  background-color: #53a;
+  background-image: linear-gradient(to top, #42a, #63a);
+  text-align: center;
+  color: white;
+  cursor: pointer;
+}
+
+#uraniumConvertButton {
+  width: 242px;
+  margin-top: 5px;
+  background-color: #ada;
+  text-align: center;
+  height: 32px;
+}
+
+.uraniumUpgrade {
+  height: 34px;
+  background-color: #ada;
+  text-align: left;
+}
+
+#uraniumMaxAllButton {
+  position: absolute;
+  bottom: 4px;
+  right: 8px;
+  display: none;
+}
+
+#dragonSpendTimeButton {
+  text-align: left;
+  height: 34px;
+  background-color: #ffb;
+}
+
+#dragonFeedButton {
+  text-align: left;
+  height: 46px;
+  background-color: #fdb;
+}
+
+#dragonPetButton {
+  text-align: left;
+  height: 46px;
+  background-color: #fbd;
+}
+
+.darkMagicUpgrade {
+  height: 46px;
+  margin: 5px 2px 0 2px;
+  background-color: #426;
+  color: #bbf;
+  text-align: left;
+}
+
+.darkMagicUpgrade:disabled {
+  color: #77d;
+  text-shadow: 1px 1px 0 #448;
+}
+
+#sigilMagicUpgrade {
+  background-color: rgb(70, 70, 70);
+  background-image: url('img/sigilButtonBack.png');
+  background-size: 150px;
+  image-rendering: pixelated;
+  color: #bdf;
+}
+
+#sigilMagicUpgrade:disabled {
+  color: #69c;
+  text-shadow: 1px 1px 0 #468;
+}
+
+.cyanSigilUpgrade {
+  height: 46px;
+  margin: 5px 2px 0 2px;
+  background-color: #444;
+  color: #4af;
+  text-align: left;
+}
+
+.cyanSigilUpgrade:disabled {
+  color: #58b;
+  text-shadow: 1px 1px 0 #357;
+}
+
+.blueSigilUpgrade {
+  height: 46px;
+  margin: 5px 2px 0 2px;
+  background-color: #444;
+  color: #77f;
+  text-align: left;
+}
+
+.blueSigilUpgrade:disabled {
+  color: #66a;
+  text-shadow: 1px 1px 0 #448;
+}
+
+.indigoSigilUpgrade {
+  height: 46px;
+  margin: 5px 2px 0 2px;
+  background-color: #444;
+  color: #97f;
+  text-align: left;
+}
+
+.indigoSigilUpgrade:disabled {
+  color: #76a;
+  text-shadow: 1px 1px 0 #548;
+}
+
+.violetSigilUpgrade {
+  height: 46px;
+  margin: 5px 2px 0 2px;
+  background-color: #444;
+  color: #a5f;
+  text-align: left;
+}
+
+.violetSigilUpgrade:disabled {
+  color: #85b;
+  text-shadow: 1px 1px 0 #537;
+}
+
+.pinkSigilUpgrade {
+  height: 46px;
+  margin: 5px 2px 0 2px;
+  background-color: #444;
+  color: #d4d;
+  text-align: left;
+}
+
+.pinkSigilUpgrade:disabled {
+  color: #949;
+  text-shadow: 1px 1px 0 #626;
+}
+
+.knowledgeTradeDiv {
+  display: inline-block;
+  height: 160px;
+  background-color: #987;
+  text-align: center;
+  margin: 3px;
+}
+
+.knowledgeUpgrade {
+  height: 46px;
+  float: left;
+  text-align: left;
+  background-color: #c8c0a0;
+}
+
+#knowledgeMaxAllButton {
+  background-color: #c8c0a0;
+  position: absolute;
+  bottom: 2px;
+  right: 4px;
+  display: none;
+}
+
+#knowledgeAutoMaxAllButton {
+  background-color: #c8c0a0;
+  position: absolute;
+  bottom: 2px;
+  right: 85px;
+  display: none;
+}
+
+.tomeUpgrade {
+  height: 46px;
+  margin: 5px 2px 0 2px;
+  background-color: #965;
+  text-align: left;
+}
+
+.tomeUpgrade:disabled {
+  color: #444;
+  text-shadow: 1px 1px 0 #777;
+}
+
+#tomeUpgradeBuyMaxButton {
+  position: absolute;
+  bottom: 4px;
+  left: 4px;
+  display: none;
+}
+
+#blueFireMaxAllButton, #holyFireMaxAllButton {
+  position: absolute;
+  top: 89px;
+  right: 8px;
+  display: none;
+}
+
+#blueFireAutoMaxAllButton, #holyFireAutoMaxAllButton {
+  position: absolute;
+  top: 119px;
+  right: 8px;
+  display: none;
+}
+
+#plutoniumTomeUpgrade {
+  display: none;
+  background-image: url('img/plutoniumButtonBack.png');
+  background-size: 170px;
+  image-rendering: pixelated;
+  text-shadow: 1px 1px 0 #bbb;
+}
+
+#plutoniumTomeUpgrade:disabled {
+  color: #666;
+  text-shadow: 1px 1px 0 #999;
+}
+
+#plutoniumMaxAllButton {
+  position: absolute;
+  bottom: 4px;
+  right: 8px;
+  display: none;
+}
+
+#sigilTomeUpgrade {
+  display: none;
+  background-color: rgb(70, 70, 70);
+  background-image: url('img/sigilButtonBackRed.png');
+  background-size: 170px;
+  image-rendering: pixelated;
+  color: #fbb;
+}
+
+#sigilTomeUpgrade:disabled {
+  color: #c66;
+  text-shadow: 1px 1px 0 #999;
+}
+
+.blueFireBuyMaxButton, .holyFireBuyMaxButton, .plagueBuyMaxButton {
+  min-width: 46px;
+  display: none;
+}
+
+#unlockBloodButton {
+  height: 34px;
+  background-color: #444;
+  color: #d66;
+  display: none;
+}
+
+#enterHellButton {
+  background-color: #d99;
+  position: absolute;
+  bottom: 4px;
+  left: 4px;
+}
+
+#plutoniumConvertButton {
+  width: 242px;
+  margin-top: 5px;
+  background-color: #9ae;
+  text-align: center;
+  height: 32px;
+}
+
+.plutoniumUpgrade {
+  height: 34px;
+  background-color: #9ae;
+  text-align: left;
+}
+
+.redSigilUpgrade {
+  height: 46px;
+  margin: 5px 2px 0 2px;
+  background-color: #444;
+  color: #d44;
+  text-align: left;
+}
+
+.redSigilUpgrade:disabled {
+  color: #944;
+  text-shadow: 1px 1px 0 #622;
+}
+
+.orangeSigilUpgrade {
+  height: 46px;
+  margin: 5px 2px 0 2px;
+  background-color: #444;
+  color: #d94;
+  text-align: left;
+}
+
+.orangeSigilUpgrade:disabled {
+  color: #997044;
+  text-shadow: 1px 1px 0 #642;
+}
+
+.yellowSigilUpgrade {
+  height: 46px;
+  margin: 5px 2px 0 2px;
+  background-color: #444;
+  color: #dd4;
+  text-align: left;
+}
+
+.yellowSigilUpgrade:disabled {
+  color: #994;
+  text-shadow: 1px 1px 0 #662;
+}
+
+.holyTetrahedronUpgrade, .holyOctahedronUpgrade, .holyDodecahedronUpgrade {
+  width: 140px;
+  height: 60px;
+  position: absolute;
+  background-color: #999;
+}
+
+.holyTetrahedronUpgrade:disabled, .holyOctahedronUpgrade:disabled, .holyDodecahedronUpgrade:disabled {
+  color: #666;
+  text-shadow: 1px 1px 0 #999;
+}
+
+.voidMagicUpgrade {
+  height: 46px;
+  margin: 5px 2px 0 2px;
+  background-color: #111;
+  color: #b8f;
+  text-align: left;
+}
+
+.voidMagicUpgrade:disabled {
+  color: #74d;
+  text-shadow: 1px 1px 0 #247;
+}
+
+#plagueMagicUpgrade {
+  background-color: rgb(18, 18, 18);
+  background-image: url('img/plagueButtonBack.png');
+  background-size: 150px;
+  image-rendering: pixelated;
+  color: #4b4;
+}
+
+#plagueMaxAllButton {
+  position: absolute;
+  top: 68px;
+  right: 8px;
+  display: none;
+	background-color: #8d8;
+}
+
+#plagueAutoMaxAllButton {
+  position: absolute;
+  top: 98px;
+  right: 8px;
+  display: none;
+	background-color: #8d8;
+}
+
+#oganessonMagicUpgrade {
+  background-color: rgb(18, 18, 18);
+  background-image: url('img/oganessonButtonBack.png');
+  background-size: 150px;
+  image-rendering: pixelated;
+  color: #74f;
+}
+
+.oganessonUpgrade {
+  height: 34px;
+  background-color: #a9e;
+  text-align: left;
+}
+
+#lightEssenceMaxAllButton, #darkEssenceMaxAllButton, #deathEssenceMaxAllButton, #finalityEssenceMaxAllButton {
+  position: absolute;
+  top: 28px;
+  right: 8px;
+  display: none;
+}
+
+#lightEssenceAutoMaxAllButton, #darkEssenceAutoMaxAllButton, #deathEssenceAutoMaxAllButton, #finalityEssenceAutoMaxAllButton {
+  position: absolute;
+  top: 58px;
+  right: 8px;
+  display: none;
+}
+
+#nuclearPastaStateInfo {
+	color: #222;
+	font-family: 'Pixelated MS Sans Serif', Arial;
+	font-size: 11px;
+}
+
+#nuclearPastaInfoWindow {
+	position: absolute;
+  top: 100px;
+  left: 100px;
+  transform: translate(-50%, -50%);
+	background-color: #fd8;
+	color: #630;
+	transform: none;
+	display: none;
+	padding-right: 12px;
+}
+
+#finalDiv {
+	position: absolute;
+	top: 50vh;
+	left: 50vw;
+	transform: translate(-50%, -50%);
+	text-align: center;
+	max-width: 98vw;
+	color: white;
+	display: none;
+}
+
+#finalText {
+	font-family: 'Alagard';
+	font-size: 64px;
+	margin: 0;
+	background: -webkit-linear-gradient(45deg, #8ff, white, #8ff);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+
+
+
+
+
+#achievementInfo {
+  position: absolute;
+  z-index: 11;
+  width: calc(100% - 20px);
+  height: 95px;
+  margin: 0;
+  padding-top: 2px;
+  background-color: #666;
+  background-image: url('img/back.png');
+  color: white;
+}
+
+.achievementUnlocked {
+  background-image: linear-gradient(#5a5, #464);
+  background-color: #464 !important;
+}
+
+#achievementPopup {
+  position: fixed;
+  top:initial;
+  width: 350px; 
+  bottom: 30px; 
+  left: -380px; 
+  transform: none; 
+  z-index: 2; 
+  transition: left 800ms ease-in-out;
+}
+
+#autosaveWarning, #siteMovedBox {
+  position: fixed;
+  top:20px;
+  right:20px;
+  width:200px;
+}
+
+.achievementStar {
+  position:absolute;
+  width:50px;
+  height:50px;
+  z-index:10;
+  left:0px;
+}
