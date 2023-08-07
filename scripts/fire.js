@@ -62,15 +62,15 @@ function buyFireUpgrade(x) {
   if (game[costString].lt("e1e9")) game.fire = game.fire.sub(game[costString]);
   game[boughtString] = game[boughtString].add(1);
   game[costString] = new Decimal(fireUpgradeBase[x]).pow(game[boughtString]).mul(fireUpgradeInitialCosts[x]).floor(); //update cost to reflect new count
-  document.getElementById(costString).innerHTML = format(game[costString], 0);
+  document.getElementById(costString).textContent = format(game[costString], 0);
   switch (x) {
     case 1:
       //the effect of upgrade 1 depends on whether magic upgrade 13 has been purchased
       let upg1eff = game.magicUpgradesBought[13] ? new Decimal(3.5).pow(game.fireUpgrade1Bought.pow(0.7)) : new Decimal(2).pow(game.fireUpgrade1Bought.pow(0.6));
-      document.getElementById("fireUpgrade1Effect").innerHTML = format(upg1eff, 2)
+      document.getElementById("fireUpgrade1Effect").textContent = format(upg1eff, 2)
       break;
     case 6:
-      document.getElementById("fireUpgrade6Effect").innerHTML = format(new Decimal(3).pow(game.fireUpgrade6Bought.pow(0.6)), 2)
+      document.getElementById("fireUpgrade6Effect").textContent = format(new Decimal(3).pow(game.fireUpgrade6Bought.pow(0.6)), 2)
       break;
   }
 }
@@ -143,15 +143,15 @@ function fireBuyMax(x) {
   if (costToBuy.lt("e1e9")) game.fire = Decimal.max(game.fire.sub(costToBuy), 0);
   game[boughtString] = game[boughtString].add(amtToBuy);
   game[costString] = new Decimal(fireUpgradeBase[x]).pow(game[boughtString]).mul(fireUpgradeInitialCosts[x]).floor(); //update cost to reflect new count
-  document.getElementById(costString).innerHTML = format(game[costString], 0);
+  document.getElementById(costString).textContent = format(game[costString], 0);
   switch (x) {
     case 1:
       //the effect of upgrade 1 depends on whether magic upgrade 13 has been purchased
       let upg1eff = game.magicUpgradesBought[13] ? new Decimal(3.5).pow(game.fireUpgrade1Bought.pow(0.7)) : new Decimal(2).pow(game.fireUpgrade1Bought.pow(0.6));
-      document.getElementById("fireUpgrade1Effect").innerHTML = format(upg1eff, 2)
+      document.getElementById("fireUpgrade1Effect").textContent = format(upg1eff, 2)
       break;
     case 6:
-      document.getElementById("fireUpgrade6Effect").innerHTML = format(new Decimal(3).pow(game.fireUpgrade6Bought.pow(0.6)), 2)
+      document.getElementById("fireUpgrade6Effect").textContent = format(new Decimal(3).pow(game.fireUpgrade6Bought.pow(0.6)), 2)
       break;
   }
 }
@@ -194,7 +194,7 @@ function buyBlueFireUpgrade(x) {
   if (new Decimal(game.blueFireUpgradeCosts[x-1]).lt("e1e9")) game.blueFire = game.blueFire.sub(game.blueFireUpgradeCosts[x-1]);
   game.blueFireUpgradesBought[x-1] = game.blueFireUpgradesBought[x-1].add(1);
   game.blueFireUpgradeCosts[x-1] = new Decimal(blueFireUpgradeBase[x]).pow(game.blueFireUpgradesBought[x-1]).mul(blueFireUpgradeInitialCosts[x]).floor(); //update cost to reflect new count
-  document.getElementById('blueFireUpgrade' + x + 'Cost').innerHTML = format(game.blueFireUpgradeCosts[x-1], 0);
+  document.getElementById('blueFireUpgrade' + x + 'Cost').textContent = format(game.blueFireUpgradeCosts[x-1], 0);
   if (x==5) {
     document.getElementById("dragonTimeEffectCap").innerHTML = ""
   }
@@ -207,7 +207,7 @@ function blueFireBuyMax(x) {
   if (costToBuy.lt("e1e9")) game.blueFire = game.blueFire.sub(costToBuy);
   game.blueFireUpgradesBought[x-1] = game.blueFireUpgradesBought[x-1].add(amtToBuy);
   game.blueFireUpgradeCosts[x-1] = new Decimal(blueFireUpgradeBase[x]).pow(game.blueFireUpgradesBought[x-1]).mul(blueFireUpgradeInitialCosts[x]).floor(); //update cost to reflect new count
-  document.getElementById('blueFireUpgrade' + x + 'Cost').innerHTML = format(game.blueFireUpgradeCosts[x-1], 0);
+  document.getElementById('blueFireUpgrade' + x + 'Cost').textContent = format(game.blueFireUpgradeCosts[x-1], 0);
 }
 
 function blueFireMaxAll() {
@@ -235,7 +235,7 @@ function buyHolyFireUpgrade(x) {
   if (new Decimal((game.holyFireUpgradeCosts[x-1])).lt("e1e9")) game.holyFire = game.holyFire.sub(game.holyFireUpgradeCosts[x-1]);
   game.holyFireUpgradesBought[x-1] = game.holyFireUpgradesBought[x-1].add(1);
   game.holyFireUpgradeCosts[x-1] = new Decimal(holyFireUpgradeBase[x]).pow(game.holyFireUpgradesBought[x-1]).mul(holyFireUpgradeInitialCosts[x]).floor(); //update cost to reflect new count
-  document.getElementById('holyFireUpgrade' + x + 'Cost').innerHTML = format(game.holyFireUpgradeCosts[x-1], 0);
+  document.getElementById('holyFireUpgrade' + x + 'Cost').textContent = format(game.holyFireUpgradeCosts[x-1], 0);
 }
 
 function holyFireBuyMax(x) {
@@ -245,7 +245,7 @@ function holyFireBuyMax(x) {
   if (costToBuy.lt("e1e9")) game.holyFire = game.holyFire.sub(costToBuy);
   game.holyFireUpgradesBought[x-1] = game.holyFireUpgradesBought[x-1].add(amtToBuy);
   game.holyFireUpgradeCosts[x-1] = new Decimal(holyFireUpgradeBase[x]).pow(game.holyFireUpgradesBought[x-1]).mul(holyFireUpgradeInitialCosts[x]).floor(); //update cost to reflect new count
-  document.getElementById('holyFireUpgrade' + x + 'Cost').innerHTML = format(game.holyFireUpgradeCosts[x-1], 0);
+  document.getElementById('holyFireUpgrade' + x + 'Cost').textContent = format(game.holyFireUpgradeCosts[x-1], 0);
 }
 
 function holyFireMaxAll() {

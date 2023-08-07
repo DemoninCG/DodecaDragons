@@ -553,7 +553,9 @@ img {
   position: absolute;
   background-color: #999;
 }
-
+.holyDodecahedronUpgrade {
+  width: 160px;
+}
 .holyTetrahedronUpgrade:disabled, .holyOctahedronUpgrade:disabled, .holyDodecahedronUpgrade:disabled {
   color: #666;
   text-shadow: 1px 1px 0 #999;
