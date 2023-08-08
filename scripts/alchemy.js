@@ -48,7 +48,7 @@ function buyPlatinumUpgrade(x) {
     document.getElementsByClassName("platinumUpgradesBought")[3].innerHTML = game.platinumUpgradesBought[3]
     if (game.platinumUpgradesBought[3] == 5) document.getElementsByClassName("platinumUpgrade")[3].disabled = true
     game.minerCost = new Decimal(1.1).sub(game.platinumUpgradesBought[3] * 0.005).pow(game.miners).mul(20).floor()
-    document.getElementById("minerCost").innerHTML = format(game.minerCost, 0)
+    document.getElementById("minerCost").textContent = format(game.minerCost, 0)
   }
   else if (x==5 && game.platinumUpgradesBought[4] < 1 && game.platinum.gte(2000)) {
     game.platinum = game.platinum.sub(2000)
@@ -67,7 +67,7 @@ function buyPlatinumUpgrade(x) {
     game.platinumUpgradesBought[6]++
     document.getElementsByClassName("platinumUpgradesBought")[6].innerHTML = game.platinumUpgradesBought[6]
     if ((!game.magicUpgradesBought[10] && game.platinumUpgradesBought[6] == 10) || game.platinumUpgradesBought[6] == 20) document.getElementsByClassName("platinumUpgrade")[6].disabled = true
-    document.getElementById("platinumUpgrade7Effect").innerHTML = format(new Decimal(1.5).pow(game.platinumUpgradesBought[6]), 2)
+    document.getElementById("platinumUpgrade7Effect").textContent = format(new Decimal(1.5).pow(game.platinumUpgradesBought[6]), 2)
   }
   else if (x==8 && game.platinumUpgradesBought[7] < 5 && game.platinum.gte(1e22)) {
     game.platinum = game.platinum.sub(1e22)
@@ -114,7 +114,7 @@ function platinumMaxAll() {
   document.getElementsByClassName("platinumUpgradesBought")[3].innerHTML = game.platinumUpgradesBought[3]
   if (game.platinumUpgradesBought[3] == 5) document.getElementsByClassName("platinumUpgrade")[3].disabled = true
   game.minerCost = new Decimal(1.1).sub(game.platinumUpgradesBought[3] * 0.005).pow(game.miners).mul(20).floor()
-  document.getElementById("minerCost").innerHTML = format(game.minerCost, 0)
+  document.getElementById("minerCost").textContent = format(game.minerCost, 0)
 
   if (game.platinumUpgradesBought[4] < 1 && game.platinum.gte(2000)) {
     game.platinum = game.platinum.sub(2000)
@@ -138,7 +138,7 @@ function platinumMaxAll() {
     game.platinumUpgradesBought[6] += PU7AmountToBuy
     document.getElementsByClassName("platinumUpgradesBought")[6].innerHTML = game.platinumUpgradesBought[6]
     if ((!game.magicUpgradesBought[10] && game.platinumUpgradesBought[6] == 10) || game.platinumUpgradesBought[6] == 20) document.getElementsByClassName("platinumUpgrade")[6].disabled = true
-    document.getElementById("platinumUpgrade7Effect").innerHTML = format(new Decimal(1.5).pow(game.platinumUpgradesBought[6]), 2)
+    document.getElementById("platinumUpgrade7Effect").textContent = format(new Decimal(1.5).pow(game.platinumUpgradesBought[6]), 2)
   }
 
   if (game.unlocks >= 8 || game.unlocks >= 10) {

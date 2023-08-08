@@ -48,7 +48,7 @@ function upgradeDragon(x) {
     game.dragonStage = 5
     document.getElementById("dragonAffectionStuff").style.display = "block"
     document.getElementById("dragonTimeCooldown").innerHTML = game.dragonTimeCooldown
-    document.getElementById("dragonTimeSpent").innerHTML = format(game.dragonTimeSpent, 0)
+    document.getElementById("dragonTimeSpent").textContent = format(game.dragonTimeSpent, 0)
     game.dragonTimeEffect = new Decimal(1.2).pow(game.dragonTimeSpent.pow(0.3))
     if (game.dragonTimeEffect.gt(2)) game.dragonTimeEffect = game.dragonTimeEffect.add(2).pow(0.5)
     if (game.dragonTimeEffect.gt(2.5)) {
@@ -56,12 +56,12 @@ function upgradeDragon(x) {
       document.getElementById("dragonTimeEffectCap").innerHTML = " (capped)"
     }
     else {document.getElementById("dragonTimeEffectCap").innerHTML = ""}
-    document.getElementById("dragonTimeEffect").innerHTML = format(game.dragonTimeEffect, 3)
+    document.getElementById("dragonTimeEffect").textContent = format(game.dragonTimeEffect, 3)
     if (game.dragonTimeCooldown > 0) {document.getElementById("dragonSpendTimeButton").disabled = true}
     else {document.getElementById("dragonSpendTimeButton").disabled = false}
-    document.getElementById("dragonFeedCost").innerHTML = format(game.dragonFeedCost, 0)
-    document.getElementById("dragonFood").innerHTML = format(game.dragonFood, 0)
-    document.getElementById("dragonFoodEffect").innerHTML = format(new Decimal(1.3).pow(game.dragonFood), 3)
+    document.getElementById("dragonFeedCost").textContent = format(game.dragonFeedCost, 0)
+    document.getElementById("dragonFood").textContent = format(game.dragonFood, 0)
+    document.getElementById("dragonFoodEffect").textContent = format(new Decimal(1.3).pow(game.dragonFood), 3)
   }
   else if (x==5 && game.gold.gte("e1.5e11")) {
     document.getElementsByClassName("upgradeDragonButton")[4].style.display = "none"
@@ -124,7 +124,7 @@ function dragonSpendTime() {
     game.dragonTimeCooldown = 30
     document.getElementById("dragonSpendTimeButton").disabled = true
     document.getElementById("dragonTimeCooldown").innerHTML = game.dragonTimeCooldown
-    document.getElementById("dragonTimeSpent").innerHTML = format(game.dragonTimeSpent, 0)
+    document.getElementById("dragonTimeSpent").textContent = format(game.dragonTimeSpent, 0)
     game.dragonTimeEffect = new Decimal(1.2).pow(game.dragonTimeSpent.pow(0.3))
     if (game.dragonTimeEffect.gt(2)) game.dragonTimeEffect = game.dragonTimeEffect.add(2).pow(0.5)
     dragonTimeEffectCap = new Decimal(2.5)
@@ -136,7 +136,7 @@ function dragonSpendTime() {
       document.getElementById("dragonTimeEffectCap").innerHTML = " (capped)"
     }
     else {document.getElementById("dragonTimeEffectCap").innerHTML = ""}
-    document.getElementById("dragonTimeEffect").innerHTML = format(game.dragonTimeEffect, 3)
+    document.getElementById("dragonTimeEffect").textContent = format(game.dragonTimeEffect, 3)
   }
 }
 
@@ -153,9 +153,9 @@ function dragonFeed() {
       game.dragonFood = game.dragonFood.add(1);
       game.dragonFeedCost = new Decimal(10).pow(new Decimal(2).pow(game.dragonFood).mul(8).round());
     }
-    document.getElementById("dragonFeedCost").innerHTML = format(game.dragonFeedCost, 0);
-    document.getElementById("dragonFood").innerHTML = format(game.dragonFood, 0);
-    document.getElementById("dragonFoodEffect").innerHTML = format(new Decimal(1.3).pow(game.dragonFood), 3);
+    document.getElementById("dragonFeedCost").textContent = format(game.dragonFeedCost, 0);
+    document.getElementById("dragonFood").textContent = format(game.dragonFood, 0);
+    document.getElementById("dragonFoodEffect").textContent = format(new Decimal(1.3).pow(game.dragonFood), 3);
     //Resetting all the score and magifold stuff
     if (game.unlockedAchievements[7] > 0) {
       //do nothing :D
@@ -170,22 +170,22 @@ function dragonFeed() {
       game.magicScore3 = new Decimal(0)
       game.magicScore4 = new Decimal(0)
     }
-    document.getElementById("magicScore1").innerHTML = format(game.magicScore1, 0)
-    document.getElementById("magicScore2").innerHTML = format(game.magicScore2, 0)
-    document.getElementById("magicScore3").innerHTML = format(game.magicScore3, 0)
-    document.getElementById("magicScore4").innerHTML = format(game.magicScore4, 0)
-    document.getElementById("magicMult1").innerHTML = format(game.magicScore1.add(1), 0)
-    document.getElementById("magicMult2").innerHTML = format(game.magicScore2.add(1), 0)
-    document.getElementById("magicMult3").innerHTML = format(game.magicScore3.add(1), 0)
-    document.getElementById("magicMult4").innerHTML = format(game.magicScore4.add(1), 0)
+    document.getElementById("magicScore1").textContent = format(game.magicScore1, 0)
+    document.getElementById("magicScore2").textContent = format(game.magicScore2, 0)
+    document.getElementById("magicScore3").textContent = format(game.magicScore3, 0)
+    document.getElementById("magicScore4").textContent = format(game.magicScore4, 0)
+    document.getElementById("magicMult1").textContent = format(game.magicScore1.add(1), 0)
+    document.getElementById("magicMult2").textContent = format(game.magicScore2.add(1), 0)
+    document.getElementById("magicMult3").textContent = format(game.magicScore3.add(1), 0)
+    document.getElementById("magicMult4").textContent = format(game.magicScore4.add(1), 0)
     
     if (game.inHell) {game.magifolds = new Decimal(1)}
     else {game.magifolds = game.magicScore1.add(1).mul(game.magicScore2.add(1)).mul(game.magicScore3.add(1)).mul(game.magicScore4.add(1))}
-    document.getElementById("magifolds").innerHTML = format(game.magifolds, 0)
-    if (game.darkMagicUpgradesBought[3]) {document.getElementById("magifoldEffect").innerHTML = format(game.magifolds.pow(8), 2)}
-    else if (game.magicUpgradesBought[18]) {document.getElementById("magifoldEffect").innerHTML = format(game.magifolds.pow(6), 2)}
-    else {document.getElementById("magifoldEffect").innerHTML = format(game.magifolds.pow(4), 2)}
-    document.getElementsByClassName("resourceText")[5].innerHTML = format(game.magifolds, 0)
+    document.getElementById("magifolds").textContent = format(game.magifolds, 0)
+    if (game.darkMagicUpgradesBought[3]) {document.getElementById("magifoldEffect").textContent = format(game.magifolds.pow(8), 2)}
+    else if (game.magicUpgradesBought[18]) {document.getElementById("magifoldEffect").textContent = format(game.magifolds.pow(6), 2)}
+    else {document.getElementById("magifoldEffect").textContent = format(game.magifolds.pow(4), 2)}
+    document.getElementsByClassName("resourceText")[5].textContent = format(game.magifolds, 0)
   }
 }
 
@@ -197,28 +197,28 @@ function dragonPet() {
     game.dragonPets++
     document.getElementById("dragonPetRequirement").innerHTML = "blue"
     document.getElementById("dragonPets").innerHTML = game.dragonPets
-    document.getElementById("dragonPetEffect").innerHTML = format(new Decimal(5).pow(game.dragonPets ** 0.5), 2)
+    document.getElementById("dragonPetEffect").textContent = format(new Decimal(5).pow(game.dragonPets ** 0.5), 2)
   }
   else if (game.dragonPets == 1 && game.blueSigils.gte(250)) {
     game.blueSigils = game.blueSigils.sub(250)
     game.dragonPets++
     document.getElementById("dragonPetRequirement").innerHTML = "indigo"
     document.getElementById("dragonPets").innerHTML = game.dragonPets
-    document.getElementById("dragonPetEffect").innerHTML = format(new Decimal(5).pow(game.dragonPets ** 0.5), 2)
+    document.getElementById("dragonPetEffect").textContent = format(new Decimal(5).pow(game.dragonPets ** 0.5), 2)
   }
   else if (game.dragonPets == 2 && game.indigoSigils.gte(250)) {
     game.indigoSigils = game.indigoSigils.sub(250)
     game.dragonPets++
     document.getElementById("dragonPetRequirement").innerHTML = "violet"
     document.getElementById("dragonPets").innerHTML = game.dragonPets
-    document.getElementById("dragonPetEffect").innerHTML = format(new Decimal(5).pow(game.dragonPets ** 0.5), 2)
+    document.getElementById("dragonPetEffect").textContent = format(new Decimal(5).pow(game.dragonPets ** 0.5), 2)
   }
   else if (game.dragonPets == 3 && game.violetSigils.gte(250)) {
     game.violetSigils = game.violetSigils.sub(250)
     game.dragonPets++
     document.getElementById("dragonPetRequirement").innerHTML = "pink"
     document.getElementById("dragonPets").innerHTML = game.dragonPets
-    document.getElementById("dragonPetEffect").innerHTML = format(new Decimal(5).pow(game.dragonPets ** 0.5), 2)
+    document.getElementById("dragonPetEffect").textContent = format(new Decimal(5).pow(game.dragonPets ** 0.5), 2)
   }
   else if (game.dragonPets == 4 && game.pinkSigils.gte(250)) {
     game.pinkSigils = game.pinkSigils.sub(250)
@@ -226,7 +226,7 @@ function dragonPet() {
     document.getElementById("dragonPetButton").innerHTML = "You have petted your dragon sufficiently."
     document.getElementById("dragonPetButton").disabled = true
     document.getElementById("dragonPets").innerHTML = game.dragonPets
-    document.getElementById("dragonPetEffect").innerHTML = format(new Decimal(5).pow(game.dragonPets ** 0.5), 2)
+    document.getElementById("dragonPetEffect").textContent = format(new Decimal(5).pow(game.dragonPets ** 0.5), 2)
   }
 }
 
@@ -245,7 +245,7 @@ function defeatHypergod() {
 			document.getElementById("hypergodImage").src = "img/hypergod" + (game.hypergodsDefeated+1) + ".png"
 			document.getElementById("hypergodName").innerHTML = hypergodNames[game.hypergodsDefeated]
 			document.getElementById("hypergodText").innerHTML = hypergodText[game.hypergodsDefeated]
-			document.getElementById("hypergodDefeatCost").innerHTML = format(hypergodDefeatCosts[game.hypergodsDefeated])
+			document.getElementById("hypergodDefeatCost").textContent = format(hypergodDefeatCosts[game.hypergodsDefeated])
 		}
 	}
 }

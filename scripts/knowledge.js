@@ -63,29 +63,29 @@ function loadKnowledgeTrade(trade) {
 function updateKnowledgeTradeLevel(x) {
   if (x==1) {
     game.knowledgeTradeLevel = new Decimal(document.getElementById("knowledgeLevelRange").value)
-    if (game.knowledgeTradeLevel.lt(1e308)) document.getElementById("knowledgeLevelInput").value = game.knowledgeTradeLevel.toNumber()
+    if (game.knowledgeTradeLevel.lt(1e308)) document.getElementById("knowledgeLevelInput").value = game.knowledgeTradeLevel.mag
   }
   else if (x==2) {
     game.knowledgeTradeLevel = new Decimal(document.getElementById("knowledgeLevelInput").value)
 		if (game.knowledgeTradeLevel.lt(0)) game.knowledgeTradeLevel = new Decimal(0)
 		if (game.knowledgeTradeLevel.gt(game.knowledgeTradeLevelCap)) game.knowledgeTradeLevel = game.knowledgeTradeLevelCap
     if (game.knowledgeTradeLevel.lt(1e308)) {
-			document.getElementById("knowledgeLevelRange").value = game.knowledgeTradeLevel.toNumber()
-			document.getElementById("knowledgeLevelInput").value = game.knowledgeTradeLevel.toNumber()
+			document.getElementById("knowledgeLevelRange").value = game.knowledgeTradeLevel.mag
+			document.getElementById("knowledgeLevelInput").value = game.knowledgeTradeLevel.mag
 		}
   }
   //document.getElementById("knowledgeTradeLevel").innerHTML = game.knowledgeTradeLevel
-  document.getElementsByClassName("knowledgeTradeCostRange")[0].innerHTML = format(new Decimal(1.5).pow(game.knowledgeTradeLevel.sub(1)).mul(knowledgeMultipliers[0]).mul(3.75).floor().mul(100), 0) + " - " + format(new Decimal(1.5).pow(game.knowledgeTradeLevel.sub(1)).mul(knowledgeMultipliers[0]).mul(11.25).floor().mul(100), 0)
-  document.getElementsByClassName("knowledgeTradeCostRange")[1].innerHTML = format(new Decimal(1.5).pow(game.knowledgeTradeLevel.sub(1)).mul(knowledgeMultipliers[1]).mul(3.75).floor().mul(100), 0) + " - " + format(new Decimal(1.5).pow(game.knowledgeTradeLevel.sub(1)).mul(knowledgeMultipliers[1]).mul(11.25).floor().mul(100), 0)
-  document.getElementsByClassName("knowledgeTradeCostRange")[2].innerHTML = format(new Decimal(1.5).pow(game.knowledgeTradeLevel.sub(1)).mul(knowledgeMultipliers[2]).mul(3.75).floor().mul(100), 0) + " - " + format(new Decimal(1.5).pow(game.knowledgeTradeLevel.sub(1)).mul(knowledgeMultipliers[2]).mul(11.25).floor().mul(100), 0)
-  document.getElementsByClassName("knowledgeTradeCostRange")[3].innerHTML = format(new Decimal(1.5).pow(game.knowledgeTradeLevel.sub(1)).mul(knowledgeMultipliers[3]).mul(3.75).floor().mul(100), 0) + " - " + format(new Decimal(1.5).pow(game.knowledgeTradeLevel.sub(1)).mul(knowledgeMultipliers[3]).mul(11.25).floor().mul(100), 0)
-  document.getElementsByClassName("knowledgeTradeCostRange")[4].innerHTML = format(new Decimal(1.5).pow(game.knowledgeTradeLevel.sub(1)).mul(knowledgeMultipliers[4]).mul(3.75).floor().mul(100), 0) + " - " + format(new Decimal(1.5).pow(game.knowledgeTradeLevel.sub(1)).mul(knowledgeMultipliers[4]).mul(11.25).floor().mul(100), 0)
+  document.getElementsByClassName("knowledgeTradeCostRange")[0].textContent = format(new Decimal(1.5).pow(game.knowledgeTradeLevel.sub(1)).mul(knowledgeMultipliers[0]).mul(3.75).floor().mul(100), 0) + " - " + format(new Decimal(1.5).pow(game.knowledgeTradeLevel.sub(1)).mul(knowledgeMultipliers[0]).mul(11.25).floor().mul(100), 0)
+  document.getElementsByClassName("knowledgeTradeCostRange")[1].textContent = format(new Decimal(1.5).pow(game.knowledgeTradeLevel.sub(1)).mul(knowledgeMultipliers[1]).mul(3.75).floor().mul(100), 0) + " - " + format(new Decimal(1.5).pow(game.knowledgeTradeLevel.sub(1)).mul(knowledgeMultipliers[1]).mul(11.25).floor().mul(100), 0)
+  document.getElementsByClassName("knowledgeTradeCostRange")[2].textContent = format(new Decimal(1.5).pow(game.knowledgeTradeLevel.sub(1)).mul(knowledgeMultipliers[2]).mul(3.75).floor().mul(100), 0) + " - " + format(new Decimal(1.5).pow(game.knowledgeTradeLevel.sub(1)).mul(knowledgeMultipliers[2]).mul(11.25).floor().mul(100), 0)
+  document.getElementsByClassName("knowledgeTradeCostRange")[3].textContent = format(new Decimal(1.5).pow(game.knowledgeTradeLevel.sub(1)).mul(knowledgeMultipliers[3]).mul(3.75).floor().mul(100), 0) + " - " + format(new Decimal(1.5).pow(game.knowledgeTradeLevel.sub(1)).mul(knowledgeMultipliers[3]).mul(11.25).floor().mul(100), 0)
+  document.getElementsByClassName("knowledgeTradeCostRange")[4].textContent = format(new Decimal(1.5).pow(game.knowledgeTradeLevel.sub(1)).mul(knowledgeMultipliers[4]).mul(3.75).floor().mul(100), 0) + " - " + format(new Decimal(1.5).pow(game.knowledgeTradeLevel.sub(1)).mul(knowledgeMultipliers[4]).mul(11.25).floor().mul(100), 0)
   knowledgeRewardTemp = new Decimal(1.5).pow(game.knowledgeTradeLevel.sub(1))
   knowledgeRewardTemp = knowledgeRewardTemp.mul(new Decimal(2).pow(game.knowledgeUpgradesBought[0].pow(0.5)))
   if (game.tomeUpgradesBought[2] == true) knowledgeRewardTemp = knowledgeRewardTemp.mul(2)
   if (game.tomeUpgradesBought[6] == true) knowledgeRewardTemp = knowledgeRewardTemp.mul(game.totalTomes.pow(1.2).add(1))
   if (game.tomeUpgradesBought[8] == true) knowledgeRewardTemp = knowledgeRewardTemp.mul(new Decimal(1000).pow(game.blueFireUpgradesBought[5].pow(0.6))).floor()
-  document.getElementById("knowledgeTradeRewardRange").innerHTML = format(knowledgeRewardTemp, 0) + " - " + format(knowledgeRewardTemp.mul(1.5), 0)
+  document.getElementById("knowledgeTradeRewardRange").textContent = format(knowledgeRewardTemp, 0) + " - " + format(knowledgeRewardTemp.mul(1.5), 0)
 }
 
 function purchaseKnowledgeTrade(trade) {
@@ -108,18 +108,18 @@ function buyKnowledgeUpgrade(x) {
     if (game.knowledgeUpgradeCosts[0].lt("e1e9")) game.knowledge = game.knowledge.sub(game.knowledgeUpgradeCosts[0])
     game.knowledgeUpgradesBought[0] = game.knowledgeUpgradesBought[0].add(1)
     game.knowledgeUpgradeCosts[0] = new Decimal(2).pow(game.knowledgeUpgradesBought[0]).mul(20).floor()
-    document.getElementById("knowledgeUpgrade1Cost").innerHTML = format(game.knowledgeUpgradeCosts[0], 0)
-    document.getElementById("knowledgeUpgrade1Effect").innerHTML = format(new Decimal(2).pow(game.knowledgeUpgradesBought[0].pow(0.5)), 2)
+    document.getElementById("knowledgeUpgrade1Cost").textContent = format(game.knowledgeUpgradeCosts[0], 0)
+    document.getElementById("knowledgeUpgrade1Effect").textContent = format(new Decimal(2).pow(game.knowledgeUpgradesBought[0].pow(0.5)), 2)
   }
   else if (x==2 && game.knowledge.gte(game.knowledgeUpgradeCosts[1])) {
     if (game.knowledgeUpgradeCosts[1].lt("e1e9")) game.knowledge = game.knowledge.sub(game.knowledgeUpgradeCosts[1])
     game.knowledgeUpgradesBought[1] = game.knowledgeUpgradesBought[1].add(1)
     game.knowledgeUpgradeCosts[1] = new Decimal(5).pow(game.knowledgeUpgradesBought[1]).mul(50).floor()
-    document.getElementById("knowledgeUpgrade2Cost").innerHTML = format(game.knowledgeUpgradeCosts[1], 0)
+    document.getElementById("knowledgeUpgrade2Cost").textContent = format(game.knowledgeUpgradeCosts[1], 0)
     knowledgeUpgrade2Effect = new Decimal(5).pow(game.knowledgeUpgradesBought[1].pow(0.5))
     if (knowledgeUpgrade2Effect.gt(1e20)) knowledgeUpgrade2Effect = knowledgeUpgrade2Effect.mul(1e60).pow(0.25)
 		if (knowledgeUpgrade2Effect.gt("e2e7")) knowledgeUpgrade2Effect = new Decimal("e2e7")
-    document.getElementById("knowledgeUpgrade2Effect").innerHTML = format(knowledgeUpgrade2Effect, 2)
+    document.getElementById("knowledgeUpgrade2Effect").textContent = format(knowledgeUpgrade2Effect, 2)
   }
   else if (x==3 && game.knowledge.gte(100000)) {
     game.knowledge = game.knowledge.sub(100000)
@@ -139,19 +139,19 @@ function knowledgeMaxAll() {
   if (KU1Cost.lt("e1e9")) game.knowledge = game.knowledge.sub(KU1Cost)
   game.knowledgeUpgradesBought[0] = game.knowledgeUpgradesBought[0].add(KU1amountCanBuy)
   game.knowledgeUpgradeCosts[0] = new Decimal(2).pow(game.knowledgeUpgradesBought[0]).mul(20).floor()
-  document.getElementById("knowledgeUpgrade1Cost").innerHTML = format(game.knowledgeUpgradeCosts[0], 0)
-  document.getElementById("knowledgeUpgrade1Effect").innerHTML = format(new Decimal(2).pow(game.knowledgeUpgradesBought[0].pow(0.5)), 2)
+  document.getElementById("knowledgeUpgrade1Cost").textContent = format(game.knowledgeUpgradeCosts[0], 0)
+  document.getElementById("knowledgeUpgrade1Effect").textContent = format(new Decimal(2).pow(game.knowledgeUpgradesBought[0].pow(0.5)), 2)
 
   KU2amountCanBuy = Decimal.affordGeometricSeries(game.knowledge, 50, 5, game.knowledgeUpgradesBought[1])
   KU2Cost = Decimal.sumGeometricSeries(KU2amountCanBuy, 50, 5, game.knowledgeUpgradesBought[1])
   if (KU2Cost.lt("e1e9")) game.knowledge = game.knowledge.sub(KU2Cost)
   game.knowledgeUpgradesBought[1] = game.knowledgeUpgradesBought[1].add(KU2amountCanBuy)
   game.knowledgeUpgradeCosts[1] = new Decimal(5).pow(game.knowledgeUpgradesBought[1]).mul(50).floor()
-  document.getElementById("knowledgeUpgrade2Cost").innerHTML = format(game.knowledgeUpgradeCosts[1], 0)
+  document.getElementById("knowledgeUpgrade2Cost").textContent = format(game.knowledgeUpgradeCosts[1], 0)
   knowledgeUpgrade2Effect = new Decimal(5).pow(game.knowledgeUpgradesBought[1].pow(0.5))
   if (knowledgeUpgrade2Effect.gt(1e20)) knowledgeUpgrade2Effect = knowledgeUpgrade2Effect.mul(1e60).pow(0.25)
 	if (knowledgeUpgrade2Effect.gt("e2e7")) knowledgeUpgrade2Effect = new Decimal("e2e7")
-  document.getElementById("knowledgeUpgrade2Effect").innerHTML = format(knowledgeUpgrade2Effect, 2)
+  document.getElementById("knowledgeUpgrade2Effect").textContent = format(knowledgeUpgrade2Effect, 2)
 }
 
 function knowledgeAutoMaxAll() {
@@ -173,7 +173,7 @@ function buyTome() {
     if (game.tomeUpgradesBought[7]) {game.tomeCost = new Decimal(1.1).pow(game.totalTomes).mul(100000)}
     else if (game.tomeUpgradesBought[4]) {game.tomeCost = new Decimal(1.3).pow(game.totalTomes).mul(100000)}
     else {game.tomeCost = new Decimal(1.5).pow(game.totalTomes).mul(100000)}
-    document.getElementById("tomeCost").innerHTML = format(game.tomeCost, 0)
+    document.getElementById("tomeCost").textContent = format(game.tomeCost, 0)
   }
 }
 
@@ -196,7 +196,7 @@ function buyMaxTomes() {
   if (game.tomeUpgradesBought[7]) {game.tomeCost = new Decimal(1.1).pow(game.totalTomes).mul(100000)}
   else if (game.tomeUpgradesBought[4]) {game.tomeCost = new Decimal(1.3).pow(game.totalTomes).mul(100000)}
   else {game.tomeCost = new Decimal(1.5).pow(game.totalTomes).mul(100000)}
-  document.getElementById("tomeCost").innerHTML = format(game.tomeCost, 0)
+  document.getElementById("tomeCost").textContent = format(game.tomeCost, 0)
 }
 
 //Tome upgrades
@@ -220,12 +220,12 @@ function buyTomeUpgrade(x) {
     redSigilAutoOption = document.createElement("option")
     redSigilAutoOption.text = "Red"
     document.getElementById("sigilResetterType").add(redSigilAutoOption)
-    document.getElementById("redSigilUpgrade1Cost").innerHTML = format(game.redSigilUpgrade1Cost, 0)
-    document.getElementById("redSigilUpgrade1Effect").innerHTML = format(game.redSigilUpgradesBought[0].add(1), 2)
-    document.getElementById("redSigilUpgrade2Cost").innerHTML = format(game.redSigilUpgrade2Cost, 0)
-    document.getElementById("redSigilUpgrade2Effect").innerHTML = format(new Decimal(50).pow(game.redSigilUpgradesBought[1].pow(0.8)), 2)
-    document.getElementById("redSigilUpgrade3Cost").innerHTML = format(game.redSigilUpgrade3Cost, 0)
-    document.getElementById("redSigilUpgrade3Effect").innerHTML = format(new Decimal(6).pow(game.redSigilUpgradesBought[2].pow(0.7)), 2)
+    document.getElementById("redSigilUpgrade1Cost").textContent = format(game.redSigilUpgrade1Cost, 0)
+    document.getElementById("redSigilUpgrade1Effect").textContent = format(game.redSigilUpgradesBought[0].add(1), 2)
+    document.getElementById("redSigilUpgrade2Cost").textContent = format(game.redSigilUpgrade2Cost, 0)
+    document.getElementById("redSigilUpgrade2Effect").textContent = format(new Decimal(50).pow(game.redSigilUpgradesBought[1].pow(0.8)), 2)
+    document.getElementById("redSigilUpgrade3Cost").textContent = format(game.redSigilUpgrade3Cost, 0)
+    document.getElementById("redSigilUpgrade3Effect").textContent = format(new Decimal(6).pow(game.redSigilUpgradesBought[2].pow(0.7)), 2)
     addUnlock() //sets unlock to 21
   }
   else if (game.tomeUpgradesBought[x-1] != true && game.tomes.gte(tomeUpgradeCosts[x-1]) && x!=12 && x!=13) {
@@ -234,7 +234,7 @@ function buyTomeUpgrade(x) {
     document.getElementsByClassName("tomeUpgrade")[x-1].disabled = true
     if (x==5) {
       game.tomeCost = new Decimal(1.3).pow(game.totalTomes).mul(100000)
-      document.getElementById("tomeCost").innerHTML = format(game.tomeCost, 0)
+      document.getElementById("tomeCost").textContent = format(game.tomeCost, 0)
     }
     if (x==6) {
       document.getElementsByClassName("box")[22].style.display = "block"
@@ -243,7 +243,7 @@ function buyTomeUpgrade(x) {
     }
     if (x==8) {
       game.tomeCost = new Decimal(1.1).pow(game.totalTomes).mul(100000)
-      document.getElementById("tomeCost").innerHTML = format(game.tomeCost, 0)
+      document.getElementById("tomeCost").textContent = format(game.tomeCost, 0)
     }
     if (x==9) {
       document.getElementsByClassName("blueFireUpgrade")[3].style.display = "inline-block"
