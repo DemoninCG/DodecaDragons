@@ -449,8 +449,7 @@ function buyYellowSigilUpgrade(x) {
 }
 
 function maxAllSigilUpgrades() {
-  cyanSigilPowerTemp = game.cyanSigilPower.div(3)
-  SU1amountCanBuy = Decimal.affordGeometricSeries(cyanSigilPowerTemp, 1, 1.5, game.cyanSigilUpgradesBought[0])
+  SU1amountCanBuy = Decimal.affordGeometricSeries(game.cyanSigilPower, 1, 1.5, game.cyanSigilUpgradesBought[0])
   SU1Cost = Decimal.sumGeometricSeries(SU1amountCanBuy, 1, 1.5, game.cyanSigilUpgradesBought[0])
   if (game.cyanSigilPower.lt("e1e10")) game.cyanSigilPower = game.cyanSigilPower.sub(SU1Cost), 0
   game.cyanSigilUpgradesBought[0] = game.cyanSigilUpgradesBought[0].add(SU1amountCanBuy)
@@ -458,7 +457,7 @@ function maxAllSigilUpgrades() {
   document.getElementById("cyanSigilUpgrade1Cost").textContent = format(game.cyanSigilUpgrade1Cost, 0)
   document.getElementById("cyanSigilUpgrade1Effect").textContent = format(game.cyanSigilUpgradesBought[0].add(1), 2)
 
-  SU2amountCanBuy = Decimal.affordGeometricSeries(cyanSigilPowerTemp, 20, 1.5, game.cyanSigilUpgradesBought[1])
+  SU2amountCanBuy = Decimal.affordGeometricSeries(game.cyanSigilPower, 20, 1.5, game.cyanSigilUpgradesBought[1])
   SU2Cost = Decimal.sumGeometricSeries(SU2amountCanBuy, 20, 1.5, game.cyanSigilUpgradesBought[1])
   if (game.cyanSigilPower.lt("e1e10")) game.cyanSigilPower = game.cyanSigilPower.sub(SU2Cost)
   game.cyanSigilUpgradesBought[1] = game.cyanSigilUpgradesBought[1].add(SU2amountCanBuy)
@@ -466,7 +465,7 @@ function maxAllSigilUpgrades() {
   document.getElementById("cyanSigilUpgrade2Cost").textContent = format(game.cyanSigilUpgrade2Cost, 0)
   document.getElementById("cyanSigilUpgrade2Effect").textContent = format(game.cyanSigilUpgradesBought[1].add(1).pow(1.5), 2)
 
-  SU3amountCanBuy = Decimal.affordGeometricSeries(cyanSigilPowerTemp, 100, 2, game.cyanSigilUpgradesBought[2])
+  SU3amountCanBuy = Decimal.affordGeometricSeries(game.cyanSigilPower, 100, 2, game.cyanSigilUpgradesBought[2])
   SU3Cost = Decimal.sumGeometricSeries(SU3amountCanBuy, 100, 2, game.cyanSigilUpgradesBought[2])
   if (game.cyanSigilPower.lt("e1e10")) game.cyanSigilPower = game.cyanSigilPower.sub(SU3Cost)
   game.cyanSigilUpgradesBought[2] = game.cyanSigilUpgradesBought[2].add(SU3amountCanBuy)
@@ -476,8 +475,7 @@ function maxAllSigilUpgrades() {
 
   if (game.cyanSigilPower.lt(0)) game.cyanSigilPower = new Decimal(0)
 
-  blueSigilPowerTemp = game.blueSigilPower.div(2)
-  SU4amountCanBuy = Decimal.affordGeometricSeries(blueSigilPowerTemp, 1, 1.5, game.blueSigilUpgradesBought[0])
+  SU4amountCanBuy = Decimal.affordGeometricSeries(game.blueSigilPower, 1, 1.5, game.blueSigilUpgradesBought[0])
   SU4Cost = Decimal.sumGeometricSeries(SU4amountCanBuy, 1, 1.5, game.blueSigilUpgradesBought[0])
   if (game.blueSigilPower.lt("e1e10")) game.blueSigilPower = game.blueSigilPower.sub(SU4Cost)
   game.blueSigilUpgradesBought[0] = game.blueSigilUpgradesBought[0].add(SU4amountCanBuy)
@@ -485,7 +483,7 @@ function maxAllSigilUpgrades() {
   document.getElementById("blueSigilUpgrade1Cost").textContent = format(game.blueSigilUpgrade1Cost, 0)
   document.getElementById("blueSigilUpgrade1Effect").textContent = format(game.blueSigilUpgradesBought[0].add(1), 2)
 
-  SU5amountCanBuy = Decimal.affordGeometricSeries(blueSigilPowerTemp, 20, 1.5, game.blueSigilUpgradesBought[1])
+  SU5amountCanBuy = Decimal.affordGeometricSeries(game.blueSigilPower, 20, 1.5, game.blueSigilUpgradesBought[1])
   SU5Cost = Decimal.sumGeometricSeries(SU5amountCanBuy, 20, 1.5, game.blueSigilUpgradesBought[1])
   if (game.blueSigilPower.lt("e1e10")) game.blueSigilPower = game.blueSigilPower.sub(SU5Cost)
   game.blueSigilUpgradesBought[1] = game.blueSigilUpgradesBought[1].add(SU5amountCanBuy)
@@ -495,8 +493,7 @@ function maxAllSigilUpgrades() {
 
   if (game.blueSigilPower.lt(0)) game.blueSigilPower = new Decimal(0)
 
-  indigoSigilPowerTemp = game.indigoSigilPower.div(3)
-  SU6amountCanBuy = Decimal.affordGeometricSeries(indigoSigilPowerTemp, 1, 1.5, game.indigoSigilUpgradesBought[0])
+  SU6amountCanBuy = Decimal.affordGeometricSeries(game.indigoSigilPower, 1, 1.5, game.indigoSigilUpgradesBought[0])
   SU6Cost = Decimal.sumGeometricSeries(SU6amountCanBuy, 1, 1.5, game.indigoSigilUpgradesBought[0])
   if (game.indigoSigilPower.lt("e1e10")) game.indigoSigilPower = game.indigoSigilPower.sub(SU6Cost)
   game.indigoSigilUpgradesBought[0] = game.indigoSigilUpgradesBought[0].add(SU6amountCanBuy)
@@ -504,7 +501,7 @@ function maxAllSigilUpgrades() {
   document.getElementById("indigoSigilUpgrade1Cost").textContent = format(game.indigoSigilUpgrade1Cost, 0)
   document.getElementById("indigoSigilUpgrade1Effect").textContent = format(game.indigoSigilUpgradesBought[0].add(1), 2)
 
-  SU7amountCanBuy = Decimal.affordGeometricSeries(indigoSigilPowerTemp, 20, 1.5, game.indigoSigilUpgradesBought[1])
+  SU7amountCanBuy = Decimal.affordGeometricSeries(game.indigoSigilPower, 20, 1.5, game.indigoSigilUpgradesBought[1])
   SU7Cost = Decimal.sumGeometricSeries(SU7amountCanBuy, 20, 1.5, game.indigoSigilUpgradesBought[1])
   if (game.indigoSigilPower.lt("e1e10")) game.indigoSigilPower = game.indigoSigilPower.sub(SU7Cost)
   game.indigoSigilUpgradesBought[1] = game.indigoSigilUpgradesBought[1].add(SU7amountCanBuy)
@@ -512,7 +509,7 @@ function maxAllSigilUpgrades() {
   document.getElementById("indigoSigilUpgrade2Cost").textContent = format(game.indigoSigilUpgrade2Cost, 0)
   document.getElementById("indigoSigilUpgrade2Effect").textContent = format(Decimal.min(new Decimal(1.15).pow(game.indigoSigilUpgradesBought[1].pow(0.5)),30), 2)
 
-  SU8amountCanBuy = Decimal.affordGeometricSeries(indigoSigilPowerTemp, 400, 2.5, game.indigoSigilUpgradesBought[2])
+  SU8amountCanBuy = Decimal.affordGeometricSeries(game.indigoSigilPower, 400, 2.5, game.indigoSigilUpgradesBought[2])
   SU8Cost = Decimal.sumGeometricSeries(SU8amountCanBuy, 400, 2.5, game.indigoSigilUpgradesBought[2])
   if (game.indigoSigilPower.lt("e1e10")) game.indigoSigilPower = game.indigoSigilPower.sub(SU8Cost)
   game.indigoSigilUpgradesBought[2] = game.indigoSigilUpgradesBought[2].add(SU8amountCanBuy)
@@ -522,8 +519,7 @@ function maxAllSigilUpgrades() {
 
   if (game.indigoSigilPower.lt(0)) game.indigoSigilPower = new Decimal(0)
 
-  violetSigilPowerTemp = game.violetSigilPower.div(2)
-  SU9amountCanBuy = Decimal.affordGeometricSeries(violetSigilPowerTemp, 1, 1.5, game.violetSigilUpgradesBought[0])
+  SU9amountCanBuy = Decimal.affordGeometricSeries(game.violetSigilPower, 1, 1.5, game.violetSigilUpgradesBought[0])
   SU9Cost = Decimal.sumGeometricSeries(SU9amountCanBuy, 1, 1.5, game.violetSigilUpgradesBought[0])
   if (game.violetSigilPower.lt("e1e10")) game.violetSigilPower = game.violetSigilPower.sub(SU9Cost)
   game.violetSigilUpgradesBought[0] = game.violetSigilUpgradesBought[0].add(SU9amountCanBuy)
@@ -531,7 +527,7 @@ function maxAllSigilUpgrades() {
   document.getElementById("violetSigilUpgrade1Cost").textContent = format(game.violetSigilUpgrade1Cost, 0)
   document.getElementById("violetSigilUpgrade1Effect").textContent = format(game.violetSigilUpgradesBought[0].add(1), 2)
 
-  SU10amountCanBuy = Decimal.affordGeometricSeries(violetSigilPowerTemp, 5, 1.5, game.violetSigilUpgradesBought[1])
+  SU10amountCanBuy = Decimal.affordGeometricSeries(game.violetSigilPower, 5, 1.5, game.violetSigilUpgradesBought[1])
   SU10Cost = Decimal.sumGeometricSeries(SU10amountCanBuy, 5, 1.5, game.violetSigilUpgradesBought[1])
   if (game.violetSigilPower.lt("e1e10")) game.violetSigilPower = game.violetSigilPower.sub(SU10Cost)
   game.violetSigilUpgradesBought[1] = game.violetSigilUpgradesBought[1].add(SU10amountCanBuy)
@@ -541,8 +537,7 @@ function maxAllSigilUpgrades() {
 
   if (game.violetSigilPower.lt(0)) game.violetSigilPower = new Decimal(0)
 
-  pinkSigilPowerTemp = game.pinkSigilPower.div(2)
-  SU11amountCanBuy = Decimal.affordGeometricSeries(pinkSigilPowerTemp, 1, 1.5, game.pinkSigilUpgradesBought[0])
+  SU11amountCanBuy = Decimal.affordGeometricSeries(game.pinkSigilPower, 1, 1.5, game.pinkSigilUpgradesBought[0])
   SU11Cost = Decimal.sumGeometricSeries(SU11amountCanBuy, 1, 1.5, game.pinkSigilUpgradesBought[0])
   if (game.pinkSigilPower.lt("e1e10")) game.pinkSigilPower = game.pinkSigilPower.sub(SU11Cost)
   game.pinkSigilUpgradesBought[0] = game.pinkSigilUpgradesBought[0].add(SU11amountCanBuy)
@@ -550,7 +545,7 @@ function maxAllSigilUpgrades() {
   document.getElementById("pinkSigilUpgrade1Cost").textContent = format(game.pinkSigilUpgrade1Cost, 0)
   document.getElementById("pinkSigilUpgrade1Effect").textContent = format(game.pinkSigilUpgradesBought[0].add(1), 2)
 
-  SU12amountCanBuy = Decimal.affordGeometricSeries(pinkSigilPowerTemp, 500000, 2, game.pinkSigilUpgradesBought[2])
+  SU12amountCanBuy = Decimal.affordGeometricSeries(game.pinkSigilPower, 500000, 2, game.pinkSigilUpgradesBought[2])
   SU12Cost = Decimal.sumGeometricSeries(SU12amountCanBuy, 500000, 2, game.pinkSigilUpgradesBought[2])
   if (game.pinkSigilPower.lt("e1e10")) game.pinkSigilPower = game.pinkSigilPower.sub(SU12Cost)
   game.pinkSigilUpgradesBought[2] = game.pinkSigilUpgradesBought[2].add(SU12amountCanBuy)
@@ -562,8 +557,7 @@ function maxAllSigilUpgrades() {
 }
 
 function maxRedSigilUpgrades() {
-  redSigilPowerTemp = game.redSigilPower.div(3)
-  SU1amountCanBuy = Decimal.affordGeometricSeries(redSigilPowerTemp, 1, 1.5, game.redSigilUpgradesBought[0])
+  SU1amountCanBuy = Decimal.affordGeometricSeries(game.redSigilPower, 1, 1.5, game.redSigilUpgradesBought[0])
   SU1Cost = Decimal.sumGeometricSeries(SU1amountCanBuy, 1, 1.5, game.redSigilUpgradesBought[0])
   if (game.redSigilPower.lt("e1e10")) game.redSigilPower = game.redSigilPower.sub(SU1Cost)
   game.redSigilUpgradesBought[0] = game.redSigilUpgradesBought[0].add(SU1amountCanBuy)
@@ -571,7 +565,7 @@ function maxRedSigilUpgrades() {
   document.getElementById("redSigilUpgrade1Cost").textContent = format(game.redSigilUpgrade1Cost, 0)
   document.getElementById("redSigilUpgrade1Effect").textContent = format(game.redSigilUpgradesBought[0].add(1), 2)
 
-  SU2amountCanBuy = Decimal.affordGeometricSeries(redSigilPowerTemp, 1500, 1.5, game.redSigilUpgradesBought[1])
+  SU2amountCanBuy = Decimal.affordGeometricSeries(game.redSigilPower, 1500, 1.5, game.redSigilUpgradesBought[1])
   SU2Cost = Decimal.sumGeometricSeries(SU2amountCanBuy, 1500, 1.5, game.redSigilUpgradesBought[1])
   if (game.redSigilPower.lt("e1e10")) game.redSigilPower = game.redSigilPower.sub(SU2Cost)
   game.redSigilUpgradesBought[1] = game.redSigilUpgradesBought[1].add(SU2amountCanBuy)
@@ -579,7 +573,7 @@ function maxRedSigilUpgrades() {
   document.getElementById("redSigilUpgrade2Cost").textContent = format(game.redSigilUpgrade2Cost, 0)
   document.getElementById("redSigilUpgrade2Effect").textContent = format(new Decimal(50).pow(game.redSigilUpgradesBought[1].pow(0.8)), 2)
 
-  SU3amountCanBuy = Decimal.affordGeometricSeries(redSigilPowerTemp, 50000, 2.5, game.redSigilUpgradesBought[2])
+  SU3amountCanBuy = Decimal.affordGeometricSeries(game.redSigilPower, 50000, 2.5, game.redSigilUpgradesBought[2])
   SU3Cost = Decimal.sumGeometricSeries(SU3amountCanBuy, 50000, 2.5, game.redSigilUpgradesBought[2])
   if (game.redSigilPower.lt("e1e10")) game.redSigilPower = game.redSigilPower.sub(SU3Cost)
   game.redSigilUpgradesBought[2] = game.redSigilUpgradesBought[2].add(SU3amountCanBuy)
@@ -591,8 +585,7 @@ function maxRedSigilUpgrades() {
 }
 
 function maxOrangeSigilUpgrades() {
-  orangeSigilPowerTemp = game.orangeSigilPower.div(3)
-  SU1amountCanBuy = Decimal.affordGeometricSeries(orangeSigilPowerTemp, 1, 1.5, game.orangeSigilUpgradesBought[0])
+  SU1amountCanBuy = Decimal.affordGeometricSeries(game.orangeSigilPower, 1, 1.5, game.orangeSigilUpgradesBought[0])
   SU1Cost = Decimal.sumGeometricSeries(SU1amountCanBuy, 1, 1.5, game.orangeSigilUpgradesBought[0])
   if (game.orangeSigilPower.lt("e1e10")) game.orangeSigilPower = game.orangeSigilPower.sub(SU1Cost)
   game.orangeSigilUpgradesBought[0] = game.orangeSigilUpgradesBought[0].add(SU1amountCanBuy)
@@ -600,7 +593,7 @@ function maxOrangeSigilUpgrades() {
   document.getElementById("orangeSigilUpgrade1Cost").textContent = format(game.orangeSigilUpgrade1Cost, 0)
   document.getElementById("orangeSigilUpgrade1Effect").textContent = format(game.orangeSigilUpgradesBought[0].add(1), 2)
 
-  SU2amountCanBuy = Decimal.affordGeometricSeries(orangeSigilPowerTemp, 1500, 2, game.orangeSigilUpgradesBought[1])
+  SU2amountCanBuy = Decimal.affordGeometricSeries(game.orangeSigilPower, 1500, 2, game.orangeSigilUpgradesBought[1])
   SU2Cost = Decimal.sumGeometricSeries(SU2amountCanBuy, 1500, 2, game.orangeSigilUpgradesBought[1])
   if (game.orangeSigilPower.lt("e1e10")) game.orangeSigilPower = game.orangeSigilPower.sub(SU2Cost)
   game.orangeSigilUpgradesBought[1] = game.orangeSigilUpgradesBought[1].add(SU2amountCanBuy)
@@ -608,7 +601,7 @@ function maxOrangeSigilUpgrades() {
   document.getElementById("orangeSigilUpgrade2Cost").textContent = format(game.orangeSigilUpgrade2Cost, 0)
   document.getElementById("orangeSigilUpgrade2Effect").textContent = format(game.orangeSigilUpgradesBought[1].pow(0.6).mul(2).add(1), 2)
 
-  SU3amountCanBuy = Decimal.affordGeometricSeries(orangeSigilPowerTemp, 150000, 3, game.orangeSigilUpgradesBought[2])
+  SU3amountCanBuy = Decimal.affordGeometricSeries(game.orangeSigilPower, 150000, 3, game.orangeSigilUpgradesBought[2])
   SU3Cost = Decimal.sumGeometricSeries(SU3amountCanBuy, 150000, 3, game.orangeSigilUpgradesBought[2])
   if (game.orangeSigilPower.lt("e1e10")) game.orangeSigilPower = game.orangeSigilPower.sub(SU3Cost)
   game.orangeSigilUpgradesBought[2] = game.orangeSigilUpgradesBought[2].add(SU3amountCanBuy)
@@ -620,8 +613,7 @@ function maxOrangeSigilUpgrades() {
 }
 
 function maxYellowSigilUpgrades() {
-  yellowSigilPowerTemp = game.yellowSigilPower.div(3)
-  SU1amountCanBuy = Decimal.affordGeometricSeries(yellowSigilPowerTemp, 1, 1.5, game.yellowSigilUpgradesBought[0])
+  SU1amountCanBuy = Decimal.affordGeometricSeries(game.yellowSigilPower, 1, 1.5, game.yellowSigilUpgradesBought[0])
   SU1Cost = Decimal.sumGeometricSeries(SU1amountCanBuy, 1, 1.5, game.yellowSigilUpgradesBought[0])
   if (game.yellowSigilPower.lt("e1e10")) game.yellowSigilPower = game.yellowSigilPower.sub(SU1Cost)
   game.yellowSigilUpgradesBought[0] = game.yellowSigilUpgradesBought[0].add(SU1amountCanBuy)
@@ -629,7 +621,7 @@ function maxYellowSigilUpgrades() {
   document.getElementById("yellowSigilUpgrade1Cost").textContent = format(game.yellowSigilUpgrade1Cost, 0)
   document.getElementById("yellowSigilUpgrade1Effect").textContent = format(game.yellowSigilUpgradesBought[0].add(1), 2)
 
-  SU2amountCanBuy = Decimal.affordGeometricSeries(yellowSigilPowerTemp, 4000, 2, game.yellowSigilUpgradesBought[1])
+  SU2amountCanBuy = Decimal.affordGeometricSeries(game.yellowSigilPower, 4000, 2, game.yellowSigilUpgradesBought[1])
   SU2Cost = Decimal.sumGeometricSeries(SU2amountCanBuy, 4000, 2, game.yellowSigilUpgradesBought[1])
   if (game.yellowSigilPower.lt("e1e10")) game.yellowSigilPower = game.yellowSigilPower.sub(SU2Cost)
   game.yellowSigilUpgradesBought[1] = game.yellowSigilUpgradesBought[1].add(SU2amountCanBuy)
@@ -637,7 +629,7 @@ function maxYellowSigilUpgrades() {
   document.getElementById("yellowSigilUpgrade2Cost").textContent = format(game.yellowSigilUpgrade2Cost, 0)
   document.getElementById("yellowSigilUpgrade2Effect").textContent = format(game.yellowSigilUpgradesBought[1].pow(0.5).mul(2).add(1), 2)
 
-  SU3amountCanBuy = Decimal.affordGeometricSeries(yellowSigilPowerTemp, 2000000, 3, game.yellowSigilUpgradesBought[2])
+  SU3amountCanBuy = Decimal.affordGeometricSeries(game.yellowSigilPower, 2000000, 3, game.yellowSigilUpgradesBought[2])
   SU3Cost = Decimal.sumGeometricSeries(SU3amountCanBuy, 2000000, 3, game.yellowSigilUpgradesBought[2])
   if (game.yellowSigilPower.lt("e1e10")) game.yellowSigilPower = game.yellowSigilPower.sub(SU3Cost)
   game.yellowSigilUpgradesBought[2] = game.yellowSigilUpgradesBought[2].add(SU3amountCanBuy)
