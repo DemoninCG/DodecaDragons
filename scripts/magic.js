@@ -43,14 +43,14 @@ function magicReset(triggerLayer = "magic") {
   game.fireUpgrade5Cost = new Decimal(500)
   game.fireUpgrade6Bought = new Decimal(0)
   game.fireUpgrade6Cost = new Decimal(2e7)
-  document.getElementById("fireUpgrade1Cost").innerHTML = format(game.fireUpgrade1Cost, 0)
-  document.getElementById("fireUpgrade1Effect").innerHTML = format(new Decimal(2).pow(game.fireUpgrade1Bought.pow(0.6)), 2)
-  document.getElementById("fireUpgrade2Cost").innerHTML = format(game.fireUpgrade2Cost, 0)
-  document.getElementById("fireUpgrade3Cost").innerHTML = format(game.fireUpgrade3Cost, 0)
-  document.getElementById("fireUpgrade4Cost").innerHTML = format(game.fireUpgrade4Cost, 0)
-  document.getElementById("fireUpgrade5Cost").innerHTML = format(game.fireUpgrade5Cost, 0)
-  document.getElementById("fireUpgrade6Cost").innerHTML = format(game.fireUpgrade6Cost, 0)
-  document.getElementById("fireUpgrade6Effect").innerHTML = format(new Decimal(3).pow(game.fireUpgrade6Bought.pow(0.6)), 2)
+  document.getElementById("fireUpgrade1Cost").textContent = format(game.fireUpgrade1Cost, 0)
+  document.getElementById("fireUpgrade1Effect").textContent = format(new Decimal(2).pow(game.fireUpgrade1Bought.pow(0.6)), 2)
+  document.getElementById("fireUpgrade2Cost").textContent = format(game.fireUpgrade2Cost, 0)
+  document.getElementById("fireUpgrade3Cost").textContent = format(game.fireUpgrade3Cost, 0)
+  document.getElementById("fireUpgrade4Cost").textContent = format(game.fireUpgrade4Cost, 0)
+  document.getElementById("fireUpgrade5Cost").textContent = format(game.fireUpgrade5Cost, 0)
+  document.getElementById("fireUpgrade6Cost").textContent = format(game.fireUpgrade6Cost, 0)
+  document.getElementById("fireUpgrade6Effect").textContent = format(new Decimal(3).pow(game.fireUpgrade6Bought.pow(0.6)), 2)
 
   game.platinum = new Decimal(0)
   game.bestPlatinumToGet = new Decimal(0)
@@ -90,8 +90,8 @@ function buyMagicUpgrade(x) {
       document.getElementById("moreMagicUpgradesButton").style.display = "block"
       addUnlock() //sets unlock to 5
     }
-    if (x==14) document.getElementById("fireUpgrade1Effect").innerHTML = format(new Decimal(3.5).pow(game.fireUpgrade1Bought.pow(0.7)), 2)
-    if (x==19) document.getElementById("magifoldEffect").innerHTML = format(game.magifolds.pow(6), 2)
+    if (x==14) document.getElementById("fireUpgrade1Effect").textContent = format(new Decimal(3.5).pow(game.fireUpgrade1Bought.pow(0.7)), 2)
+    if (x==19) document.getElementById("magifoldEffect").textContent = format(game.magifolds.pow(6), 2)
     if (x==20) {
       document.getElementsByClassName("magicUpgrade")[19].disabled = true
       document.getElementsByClassName("box")[9].style.display = "block"
@@ -132,18 +132,18 @@ function buyDarkMagicUpgrade(x) {
     game.magic = game.magic.sub(darkMagicUpgradeCosts[x-1])
     game.darkMagicUpgradesBought[x-1] = true
     document.getElementsByClassName("darkMagicUpgrade")[x-1].disabled = true
-    if (x==4) document.getElementById("magifoldEffect").innerHTML = format(game.magifolds.pow(8), 2)
+    if (x==4) document.getElementById("magifoldEffect").textContent = format(game.magifolds.pow(8), 2)
     if (x==8) {
       document.getElementById("horrorTabButton").style.display = "block"
       document.getElementsByClassName("box")[11].style.display = "block"
       document.getElementsByClassName("resourceRow")[7].style.display = "block"
       document.getElementsByClassName("confirmationToggle")[1].style.display = "inline-block"
-      document.getElementById("cyanSigilUpgrade1Cost").innerHTML = format(game.cyanSigilUpgrade1Cost, 0)
-      document.getElementById("cyanSigilUpgrade1Effect").innerHTML = format(game.cyanSigilUpgradesBought[0].add(1), 2)
-      document.getElementById("cyanSigilUpgrade2Cost").innerHTML = format(game.cyanSigilUpgrade2Cost, 0)
-      document.getElementById("cyanSigilUpgrade2Effect").innerHTML = format(game.cyanSigilUpgradesBought[1].add(1).pow(1.5), 2)
-      document.getElementById("cyanSigilUpgrade3Cost").innerHTML = format(game.cyanSigilUpgrade3Cost, 0)
-      document.getElementById("cyanSigilUpgrade3Effect").innerHTML = format(new Decimal(1.2).pow(game.cyanSigilUpgradesBought[2].pow(0.4)), 2)
+      document.getElementById("cyanSigilUpgrade1Cost").textContent = format(game.cyanSigilUpgrade1Cost, 0)
+      document.getElementById("cyanSigilUpgrade1Effect").textContent = format(game.cyanSigilUpgradesBought[0].add(1), 2)
+      document.getElementById("cyanSigilUpgrade2Cost").textContent = format(game.cyanSigilUpgrade2Cost, 0)
+      document.getElementById("cyanSigilUpgrade2Effect").textContent = format(game.cyanSigilUpgradesBought[1].add(1).pow(1.5), 2)
+      document.getElementById("cyanSigilUpgrade3Cost").textContent = format(game.cyanSigilUpgrade3Cost, 0)
+      document.getElementById("cyanSigilUpgrade3Effect").textContent = format(new Decimal(1.2).pow(game.cyanSigilUpgradesBought[2].pow(0.4)), 2)
       if (game.cyanSigilUpgradesBought[3] == 1) {document.getElementsByClassName("cyanSigilUpgrade")[3].disabled = true}
       else {document.getElementsByClassName("cyanSigilUpgrade")[3].disabled = false}
       addUnlock() //sets unlock to 10
@@ -191,7 +191,7 @@ function buyVoidMagicUpgrade(x) {
 			document.getElementsByClassName("holyFireUpgrade")[5].style.display = "inline-block"
 			document.getElementsByClassName("holyFireBuyMaxButton")[5].style.display = "inline-block"
 			game.holyFireUpgradeCosts[5] = new Decimal(holyFireUpgradeBase[6]).pow(game.holyFireUpgradesBought[5]).mul(holyFireUpgradeInitialCosts[6]).floor()
-			document.getElementById('holyFireUpgrade6Cost').innerHTML = format(game.holyFireUpgradeCosts[5], 0);
+			document.getElementById('holyFireUpgrade6Cost').textContent = format(game.holyFireUpgradeCosts[5], 0);
 		}
 		else if (x==16) {
       document.getElementsByClassName("box")[39].style.display = "block"

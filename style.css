@@ -41,6 +41,7 @@ html, body {
   font-smooth: never;
   -webkit-font-smoothing: none;
   transition: filter 1.5s;
+  touch-action: manipulation;
 }
 
 .box {

@@ -1,16 +1,20 @@
 renderVars = {
-  posX: 0,
-  posY: 0,
+  posX: window.innerWidth/2,
+  posY: window.innerHeight/2,
   mousePosX: 0,
   mousePosY: 0,
   mouseIsDown: false,
   diffX: 0,
   diffY: 0,
   currentMousePos: [0, 0],
-  zoomMultiplier: 2,
   lastRender: Date.now(),
   autoPanTime: 1500,
   isAutoPanning: false
+}
+
+cachedBoxes = []
+for(let i=0; i<47; i++){
+  cachedBoxes.push(document.getElementsByClassName("box")[i])
 }
 
 inputVars = {
@@ -48,11 +52,6 @@ arrowElements = {
 
 tabPositions = [];
 
-//Zoom stuff!
-//renderVars.posX = 0 - window.innerWidth / (renderVars.zoomMultiplier * 2)
-//renderVars.posY = 0 - window.innerHeight / (renderVars.zoomMultiplier * 2)
-//document.body.style.zoom = (renderVars.zoomMultiplier * 100) + "%"
-
 //this is executed on pageload to populate an array of tab data for better rendering
 function populateTabPositions() {
   let tabNames = Object.keys(tabData);
@@ -65,227 +64,203 @@ function populateTabPositions() {
   })
 }
 
-/*
-function render(x, y) {
-  for (i=0;i<game.unlocks;i++) {
-    for (tab in tabPositions[i]) {
-      let tabElement = document.getElementById("tab_" + tab);
-      tabElement.style.left = (window.innerWidth / 2 + x + tabPositions[i][tab][0]) + "px"
-      tabElement.style.top = (window.innerHeight / 2 + y + tabPositions[i][tab][1]) + "px"
-    }
-  }
-  let dragonTab = document.getElementById("tab_dragon");
-  dragonTabHeight = dragonTab.offsetHeight;
-  dragonTab.style.left = (window.innerWidth / 2 + x) + "px";
-  dragonTab.style.top = (window.innerHeight / 2 + y + 162 + dragonTabHeight/2) + "px";
-  if (game.unlocks >= 6) document.getElementById("tab_magicUpgrades").style.top = (window.innerHeight / 2 + y - 130) + "px"
-}
-*/
-
-
 //Sets the position of all the boxes based on the X and Y position variables
 //This is laggy!
 function render(x, y) {
   //Main tab
-  document.getElementsByClassName("box")[0].style.left = (window.innerWidth / 2 + x) + "px"
-  document.getElementsByClassName("box")[0].style.top = (window.innerHeight / 2 + y) + "px"
-  //Settings and info (stays in top left corner of screen)
-  //document.getElementsByClassName("box")[1].style.left = (window.innerWidth / 2 + x - 265) + "px"
-  //document.getElementsByClassName("box")[1].style.top = (window.innerHeight / 2 + y) + "px"
-  //Resources tab (stays in top left corner of screen)
-  //document.getElementsByClassName("box")[2].style.left = (window.innerWidth / 2 + x + 265) + "px"
-  //document.getElementsByClassName("box")[2].style.top = (window.innerHeight / 2 + y - 153) + "px"
+  cachedBoxes[0].style.left = (x) + "px"
+  cachedBoxes[0].style.top = (y) + "px"
   //Dragon tab
-  document.getElementsByClassName("box")[3].style.left = (window.innerWidth / 2 + x) + "px"
-  dragonTabHeight = document.getElementsByClassName("box")[3].offsetHeight 
-  document.getElementsByClassName("box")[3].style.top = (window.innerHeight / 2 + y + 162 + dragonTabHeight/2) + "px"
+  cachedBoxes[3].style.left = (x) + "px"
+  dragonTabHeight = cachedBoxes[3].getBoundingClientRect().height 
+  cachedBoxes[3].style.top = (y + 162 + dragonTabHeight/2) + "px"
   if (game.unlocks >= 1) {
     //Fire upgrades tab
-    document.getElementsByClassName("box")[4].style.left = (window.innerWidth / 2 + x - 365) + "px"
-    document.getElementsByClassName("box")[4].style.top = (window.innerHeight / 2 + y + 365) + "px"
+    cachedBoxes[4].style.left = (x - 365) + "px"
+    cachedBoxes[4].style.top = (y + 365) + "px"
   }
   if (game.unlocks >= 2) {
     //Alchemy tab
-    document.getElementsByClassName("box")[5].style.left = (window.innerWidth / 2 + x + 320) + "px"
-    document.getElementsByClassName("box")[5].style.top = (window.innerHeight / 2 + y + 100) + "px"
+    cachedBoxes[5].style.left = (x + 320) + "px"
+    cachedBoxes[5].style.top = (y + 100) + "px"
   }
   if (game.unlocks >= 3) {
     //Magic tab
-    document.getElementsByClassName("box")[6].style.left = (window.innerWidth / 2 + x) + "px"
-    document.getElementsByClassName("box")[6].style.top = (window.innerHeight / 2 + y - 287) + "px"
+    cachedBoxes[6].style.left = (x) + "px"
+    cachedBoxes[6].style.top = (y - 287) + "px"
     //Magic upgrades tab
-    document.getElementsByClassName("box")[7].style.left = (window.innerWidth / 2 + x - 365) + "px"
-    if (game.unlocks >= 6) { document.getElementsByClassName("box")[7].style.top = (window.innerHeight / 2 + y - 130) + "px" }
-    else { document.getElementsByClassName("box")[7].style.top = (window.innerHeight / 2 + y - 235) + "px" }
+    cachedBoxes[7].style.left = (x - 365) + "px"
+    if (game.unlocks >= 6) { cachedBoxes[7].style.top = (y - 130) + "px" }
+    else { cachedBoxes[7].style.top = (y - 235) + "px" }
   }
   if (game.unlocks >= 4) {
     //Magic challenges tab
-    document.getElementsByClassName("box")[8].style.left = (window.innerWidth / 2 + x + 390) + "px"
-    document.getElementsByClassName("box")[8].style.top = (window.innerHeight / 2 + y - 365) + "px"
+    cachedBoxes[8].style.left = (x + 390) + "px"
+    cachedBoxes[8].style.top = (y - 365) + "px"
   }
   if (game.unlocks >= 6) {
     //Alchemy tab II
-    document.getElementsByClassName("box")[9].style.left = (window.innerWidth / 2 + x + 595) + "px"
-    document.getElementsByClassName("box")[9].style.top = (window.innerHeight / 2 + y + 100) + "px"
+    cachedBoxes[9].style.left = (x + 595) + "px"
+    cachedBoxes[9].style.top = (y + 100) + "px"
   }
   if (game.unlocks >= 8) {
     //Dark magic upgrades tab
-    document.getElementsByClassName("box")[10].style.left = (window.innerWidth / 2 + x - 730) + "px"
-    document.getElementsByClassName("box")[10].style.top = (window.innerHeight / 2 + y - 130) + "px"
+    cachedBoxes[10].style.left = (x - 730) + "px"
+    cachedBoxes[10].style.top = (y - 130) + "px"
   }
   if (game.unlocks >= 9) {
     //Cyan sigils tab
-    document.getElementsByClassName("box")[11].style.left = (window.innerWidth / 2 + x + 365) + "px"
-    document.getElementsByClassName("box")[11].style.top = (window.innerHeight / 2 + y + 515) + "px"
+    cachedBoxes[11].style.left = (x + 365) + "px"
+    cachedBoxes[11].style.top = (y + 515) + "px"
   }
   if (game.unlocks >= 10) {
     //Blue sigils tab
-    document.getElementsByClassName("box")[12].style.left = (window.innerWidth / 2 + x + 730) + "px"
-    document.getElementsByClassName("box")[12].style.top = (window.innerHeight / 2 + y + 515) + "px"
+    cachedBoxes[12].style.left = (x + 730) + "px"
+    cachedBoxes[12].style.top = (y + 515) + "px"
   }
   if (game.unlocks >= 11) {
     //Indigo sigils tab
-    document.getElementsByClassName("box")[13].style.left = (window.innerWidth / 2 + x + 1095) + "px"
-    document.getElementsByClassName("box")[13].style.top = (window.innerHeight / 2 + y + 515) + "px"
+    cachedBoxes[13].style.left = (x + 1095) + "px"
+    cachedBoxes[13].style.top = (y + 515) + "px"
   }
   if (game.unlocks >= 12) {
     //Violet sigils tab
-    document.getElementsByClassName("box")[14].style.left = (window.innerWidth / 2 + x + 365) + "px"
-    document.getElementsByClassName("box")[14].style.top = (window.innerHeight / 2 + y + 830) + "px"
+    cachedBoxes[14].style.left = (x + 365) + "px"
+    cachedBoxes[14].style.top = (y + 830) + "px"
   }
   if (game.unlocks >= 13) {
     //Pink sigils tab
-    document.getElementsByClassName("box")[16].style.left = (window.innerWidth / 2 + x + 730) + "px"
-    document.getElementsByClassName("box")[16].style.top = (window.innerHeight / 2 + y + 830) + "px"
+    cachedBoxes[16].style.left = (x + 730) + "px"
+    cachedBoxes[16].style.top = (y + 830) + "px"
 
     //Sigil automation tab
-    document.getElementsByClassName("box")[20].style.left = (window.innerWidth / 2 + x + 1095) + "px"
-    document.getElementsByClassName("box")[20].style.top = (window.innerHeight / 2 + y + 830) + "px"
+    cachedBoxes[20].style.left = (x + 1095) + "px"
+    cachedBoxes[20].style.top = (y + 830) + "px"
   }
   if (game.unlocks >= 14) {
     //Knowledge tab
-    document.getElementsByClassName("box")[19].style.left = (window.innerWidth / 2 + x - 440) + "px"
-    document.getElementsByClassName("box")[19].style.top = (window.innerHeight / 2 + y + 850) + "px"
+    cachedBoxes[19].style.left = (x - 440) + "px"
+    cachedBoxes[19].style.top = (y + 850) + "px"
   }
   if (game.unlocks >= 15) {
     //Tomes tab
-    document.getElementsByClassName("box")[21].style.left = (window.innerWidth / 2 + x - 905) + "px"
-    document.getElementsByClassName("box")[21].style.top = (window.innerHeight / 2 + y + 850) + "px"
+    cachedBoxes[21].style.left = (x - 905) + "px"
+    cachedBoxes[21].style.top = (y + 850) + "px"
   }
   if (game.unlocks >= 16) {
     //Blue fire tab
-    document.getElementsByClassName("box")[22].style.left = (window.innerWidth / 2 + x - 780) + "px"
-    document.getElementsByClassName("box")[22].style.top = (window.innerHeight / 2 + y + 365) + "px"
+    cachedBoxes[22].style.left = (x - 780) + "px"
+    cachedBoxes[22].style.top = (y + 365) + "px"
   }
   if (game.unlocks >= 17) {
     //Blood tab
-    document.getElementsByClassName("box")[23].style.left = (window.innerWidth / 2 + x - 50) + "px"
-    document.getElementsByClassName("box")[23].style.top = (window.innerHeight / 2 + y - 650) + "px"
+    cachedBoxes[23].style.left = (x - 50) + "px"
+    cachedBoxes[23].style.top = (y - 650) + "px"
   }
   if (game.unlocks >= 19) {
     //Alchemy tab III
-    document.getElementsByClassName("box")[24].style.left = (window.innerWidth / 2 + x + 870) + "px"
-    document.getElementsByClassName("box")[24].style.top = (window.innerHeight / 2 + y + 100) + "px"
+    cachedBoxes[24].style.left = (x + 870) + "px"
+    cachedBoxes[24].style.top = (y + 100) + "px"
   }
   if (game.unlocks >= 20) {
     //Red sigils tab
-    document.getElementsByClassName("box")[25].style.left = (window.innerWidth / 2 + x + 365) + "px"
-    document.getElementsByClassName("box")[25].style.top = (window.innerHeight / 2 + y + 1145) + "px"
+    cachedBoxes[25].style.left = (x + 365) + "px"
+    cachedBoxes[25].style.top = (y + 1145) + "px"
   }
   if (game.unlocks >= 21) {
     //Orange sigils tab
-    document.getElementsByClassName("box")[26].style.left = (window.innerWidth / 2 + x + 730) + "px"
-    document.getElementsByClassName("box")[26].style.top = (window.innerHeight / 2 + y + 1145) + "px"
+    cachedBoxes[26].style.left = (x + 730) + "px"
+    cachedBoxes[26].style.top = (y + 1145) + "px"
   }
   if (game.unlocks >= 22) {
     //Yellow sigils tab
-    document.getElementsByClassName("box")[28].style.left = (window.innerWidth / 2 + x + 1095) + "px"
-    document.getElementsByClassName("box")[28].style.top = (window.innerHeight / 2 + y + 1145) + "px"
+    cachedBoxes[28].style.left = (x + 1095) + "px"
+    cachedBoxes[28].style.top = (y + 1145) + "px"
   }
   if (game.unlocks >= 23) {
     //Holy tetrahedrons tab
-    document.getElementsByClassName("box")[29].style.left = (window.innerWidth / 2 + x + 830) + "px"
-    document.getElementsByClassName("box")[29].style.top = (window.innerHeight / 2 + y - 250) + "px"
+    cachedBoxes[29].style.left = (x + 830) + "px"
+    cachedBoxes[29].style.top = (y - 250) + "px"
     //Holy tetrahedron tree tab
-    document.getElementsByClassName("box")[30].style.left = (window.innerWidth / 2 + x + 830) + "px"
-    document.getElementsByClassName("box")[30].style.top = (window.innerHeight / 2 + y - 680) + "px"
+    cachedBoxes[30].style.left = (x + 830) + "px"
+    cachedBoxes[30].style.top = (y - 680) + "px"
   }
   if (game.unlocks >= 24) {
     //Holy octahedrons tab
-    document.getElementsByClassName("box")[31].style.left = (window.innerWidth / 2 + x + 1295) + "px"
-    document.getElementsByClassName("box")[31].style.top = (window.innerHeight / 2 + y - 250) + "px"
+    cachedBoxes[31].style.left = (x + 1295) + "px"
+    cachedBoxes[31].style.top = (y - 250) + "px"
     //Holy octahedron tree tab
-    document.getElementsByClassName("box")[32].style.left = (window.innerWidth / 2 + x + 1295) + "px"
-    document.getElementsByClassName("box")[32].style.top = (window.innerHeight / 2 + y - 600) + "px"
+    cachedBoxes[32].style.left = (x + 1295) + "px"
+    cachedBoxes[32].style.top = (y - 600) + "px"
   }
   if (game.unlocks >= 25) {
     //Holy fire tab
-    document.getElementsByClassName("box")[33].style.left = (window.innerWidth / 2 + x - 1245) + "px"
-    document.getElementsByClassName("box")[33].style.top = (window.innerHeight / 2 + y + 365) + "px"
+    cachedBoxes[33].style.left = (x - 1245) + "px"
+    cachedBoxes[33].style.top = (y + 365) + "px"
   }
   if (game.unlocks >= 26) {
     //Void magic upgrades tab
-    document.getElementsByClassName("box")[34].style.left = (window.innerWidth / 2 + x - 1095) + "px"
-    document.getElementsByClassName("box")[34].style.top = (window.innerHeight / 2 + y - 130) + "px"
+    cachedBoxes[34].style.left = (x - 1095) + "px"
+    cachedBoxes[34].style.top = (y - 130) + "px"
   }
   if (game.unlocks >= 27) {
     //Holy dodecahedrons tab
-    document.getElementsByClassName("box")[35].style.left = (window.innerWidth / 2 + x + 1760) + "px"
-    document.getElementsByClassName("box")[35].style.top = (window.innerHeight / 2 + y - 250) + "px"
+    cachedBoxes[35].style.left = (x + 1760) + "px"
+    cachedBoxes[35].style.top = (y - 250) + "px"
     //Holy dodecahedron tree tab
-    document.getElementsByClassName("box")[36].style.left = (window.innerWidth / 2 + x + 1760) + "px"
-    document.getElementsByClassName("box")[36].style.top = (window.innerHeight / 2 + y - 600) + "px"
+    cachedBoxes[36].style.left = (x + 1760) + "px"
+    cachedBoxes[36].style.top = (y - 600) + "px"
   }
 	if (game.unlocks >= 28) {
     //Planets tab
-    document.getElementsByClassName("box")[37].style.left = (window.innerWidth / 2 + x - 515) + "px"
-    document.getElementsByClassName("box")[37].style.top = (window.innerHeight / 2 + y - 650) + "px"
+    cachedBoxes[37].style.left = (x - 515) + "px"
+    cachedBoxes[37].style.top = (y - 650) + "px"
 	}
 	if (game.unlocks >= 29) {
     //Omniversal hypergod tab
-    document.getElementsByClassName("box")[38].style.left = (window.innerWidth / 2 + x + 390) + "px"
-    document.getElementsByClassName("box")[38].style.top = (window.innerHeight / 2 + y - 780) + "px"
+    cachedBoxes[38].style.left = (x + 390) + "px"
+    cachedBoxes[38].style.top = (y - 780) + "px"
 	}
 	if (game.unlocks >= 30) {
     //Cosmic plague tab
-    document.getElementsByClassName("box")[39].style.left = (window.innerWidth / 2 + x - 1345) + "px"
-    document.getElementsByClassName("box")[39].style.top = (window.innerHeight / 2 + y + 850) + "px"
+    cachedBoxes[39].style.left = (x - 1345) + "px"
+    cachedBoxes[39].style.top = (y + 850) + "px"
 	}
 	if (game.unlocks >= 31) {
     //Alchemy tab IV
-    document.getElementsByClassName("box")[40].style.left = (window.innerWidth / 2 + x + 1145) + "px"
-    document.getElementsByClassName("box")[40].style.top = (window.innerHeight / 2 + y + 100) + "px"
+    cachedBoxes[40].style.left = (x + 1145) + "px"
+    cachedBoxes[40].style.top = (y + 100) + "px"
   }
 	if (game.unlocks >= 32) {
     //Light essence tab
-    document.getElementsByClassName("box")[41].style.left = (window.innerWidth / 2 + x + 1440) + "px"
-    document.getElementsByClassName("box")[41].style.top = (window.innerHeight / 2 + y + 100) + "px"
+    cachedBoxes[41].style.left = (x + 1440) + "px"
+    cachedBoxes[41].style.top = (y + 100) + "px"
 		//Dark essence tab
-    document.getElementsByClassName("box")[42].style.left = (window.innerWidth / 2 + x + 1755) + "px"
-    document.getElementsByClassName("box")[42].style.top = (window.innerHeight / 2 + y + 100) + "px"
+    cachedBoxes[42].style.left = (x + 1755) + "px"
+    cachedBoxes[42].style.top = (y + 100) + "px"
   }
 	if (game.unlocks >= 33) {
     //Death essence tab
-    document.getElementsByClassName("box")[43].style.left = (window.innerWidth / 2 + x + 1437) + "px"
-    document.getElementsByClassName("box")[43].style.top = (window.innerHeight / 2 + y + 615) + "px"
+    cachedBoxes[43].style.left = (x + 1437) + "px"
+    cachedBoxes[43].style.top = (y + 615) + "px"
 	}
 	if (game.unlocks >= 34) {
     //Nuclear pasta tab
-    document.getElementsByClassName("box")[44].style.left = (window.innerWidth / 2 + x - 980) + "px"
-    document.getElementsByClassName("box")[44].style.top = (window.innerHeight / 2 + y - 650) + "px"
+    cachedBoxes[44].style.left = (x - 980) + "px"
+    cachedBoxes[44].style.top = (y - 650) + "px"
 	}
 	if (game.unlocks >= 35) {
     //Finality essence tab
-    document.getElementsByClassName("box")[45].style.left = (window.innerWidth / 2 + x + 1755) + "px"
-    document.getElementsByClassName("box")[45].style.top = (window.innerHeight / 2 + y + 615) + "px"
+    cachedBoxes[45].style.left = (x + 1755) + "px"
+    cachedBoxes[45].style.top = (y + 615) + "px"
 	}
 	if (game.unlocks >= 36) {
     //Finality cubes tab
-    document.getElementsByClassName("box")[46].style.left = (window.innerWidth / 2 + x + 1541) + "px"
-    document.getElementsByClassName("box")[46].style.top = (window.innerHeight / 2 + y + 1105) + "px"
+    cachedBoxes[46].style.left = (x + 1541) + "px"
+    cachedBoxes[46].style.top = (y + 1105) + "px"
 	}
   document.body.style.backgroundPosition = (x / 4) + "px " + (y / 4) + "px"
-	if (game.unlocks >= 29) document.getElementsByClassName("box")[38].style.backgroundPosition = (x / 6) + "px " + (y / 6) + "px"
+	if (game.unlocks >= 29) cachedBoxes[38].style.backgroundPosition = (x / 6) + "px " + (y / 6) + "px"
   //console.log(Date.now() - renderVars.lastRender)
   renderVars.lastRender = Date.now();
 }
@@ -333,31 +308,11 @@ function posSet(x,y) {
   //Zoom stuff!
   //renderVars.posX = 0 - window.innerWidth / (renderVars.zoomMultiplier * 2)
   //renderVars.posY = 0 - window.innerHeight / (renderVars.zoomMultiplier * 2)
-  renderVars.posX = x
-  renderVars.posY = y
+  renderVars.posX = x + window.innerWidth/2
+  renderVars.posY = y + window.innerHeight/2
   render(renderVars.posX, renderVars.posY)
   resetPressedKeys(); //pressing home will reset all held keyboard keys in case of stuck keys
 }
-
-/*
-async function panTo(endX,endY) {
-  renderVars.isAutoPanning = true;
-  resetPressedKeys();
-  let startTime = Date.now();
-  let endTime = startTime + renderVars.autoPanTime;
-  let startX = renderVars.posX;
-  let startY = renderVars.posY;
-  while(Date.now() < endTime) {
-    renderVars.posX = lerp(startX, endX, (Date.now() - startTime) / renderVars.autoPanTime);
-    renderVars.posY = lerp(startY, endY, (Date.now() - startTime) / renderVars.autoPanTime);
-    render(renderVars.posX, renderVars.posY);
-    await promiseDelay(20);
-  }
-  renderVars.isAutoPanning = false;
-  renderVars.posX = endX;
-  renderVars.posY = endY;
-}
-*/
 
 async function panTo(endX,endY) {
   renderVars.isAutoPanning = true;
@@ -394,7 +349,8 @@ async function panTo(endX,endY) {
 
 function panToTab(tab) {
   if (tabData[tab] === undefined) {console.warn("auto tab pan attempted with invalid parameter: " + tab); return;}
-  panTo(-tabData[tab][0],-tabData[tab][1])
+  panTo(-tabData[tab][0]+(window.innerWidth/2),
+    -tabData[tab][1]+(window.innerHeight/2))
 }
 
 function panToNewUnlock() {
@@ -574,14 +530,6 @@ document.body.addEventListener('mouseenter', (e) => {
   if (e.buttons % 2 === 0) mouseUp(); //this is to cover special case where user clicks to drag and releases click outside of frame
 })
 
-//document.body.addEventListener('mouseleave', (e) => {
-  //if (e.target && e.target.classList && e.target.classList.contains('achievement')) {
-    //showAchievementInfo(null,null)
-  //}
-//})
-
-
-
 //general event listeners, mostly for panning controls
 document.body.addEventListener('mousedown', (e) => { mouseDown(e) });
 document.body.addEventListener('mouseup', (e) => { mouseUp(e) });
@@ -607,5 +555,3 @@ if (inputVars.isMobile) { //event for mobile only
   document.addEventListener('touchmove',(e) => { touchMove(e); });
   document.addEventListener('touchend',(e) => { touchUp(e); });
 }
-
-//addEventListener('wheel', (event) => {console.log(event.deltaY)});
